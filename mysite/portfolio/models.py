@@ -24,9 +24,9 @@ class Project(models.Model):
 
 
 class Comment(models.Model):
+    """Model representing comments to projects"""
     author = models.CharField(max_length=60)
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     post = models.ForeignKey('Project', on_delete=models.CASCADE)
-
 
