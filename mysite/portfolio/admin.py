@@ -3,8 +3,8 @@ from .models import Category, Project, Comment
 
 
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'short_description', 'technology', 'full_description')
-    fields = ['title', 'category', 'short_description', 'technology', 'full_description']
+    list_display = ('title', 'category', 'short_description', 'technologies', 'full_description')
+    fields = ['title', 'category', 'short_description', 'technologies', 'full_description']
 
 
 admin.site.register(Category)

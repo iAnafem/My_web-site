@@ -14,7 +14,7 @@ class Project(models.Model):
     title = models.CharField(max_length=500)
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
     short_description = models.TextField()
-    technology = models.CharField(max_length=500)
+    technologies = models.CharField(max_length=500)
     main_image = models.FilePathField(path="img/", null=True)
     full_description = models.TextField()
     full_description_images = models.FilePathField(path="img/", null=True)
