@@ -15,8 +15,9 @@ class Project(models.Model):
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
     short_description = models.TextField()
     technology = models.CharField(max_length=500)
-    image = models.FilePathField(path="portfolio/static/img/")
+    main_image = models.FilePathField(path="img/", null=True)
     full_description = models.TextField()
+    full_description_images = models.FilePathField(path="img/", null=True)
 
     def __str__(self):
         """String for representing the Model object (in Admin site etc.)"""
