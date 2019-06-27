@@ -14,9 +14,7 @@
   <div class='tour-step-background' style="background-color: black; color:white;padding-top:150px;
   padding-bottom:50px;">
     <div class='header text-center'>
-      <h1>Are you looking for a perspective <br>responsibly young person?</h1>
-      <p>London is the capital city of England. It is the most populous city in the United Kingdom,
-        with a metropolitan area of over 13 million inhabitants.</p>
+      {% block main_header %}{% endblock %}
     </div>
   </div>
   <nav class="navbar navbar-expand-sm  navbar-dark fixed-top", style="background-color: black">
@@ -43,7 +41,7 @@
         <a class="nav-link" href="{% url 'resume-index' %}">RESUME</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'blog-index' %}">BLOG</a>
+        <a class="nav-link" href="{% url 'blog_index' %}">BLOG</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'contact-index' %}">CONTACT</a>
@@ -52,7 +50,7 @@
   </nav>
 
 
-  <div class="container" style="padding-top: 150px">
+  <div class="container" style="padding-top: 100px">
     {% block page_content %}{% endblock %}
   </div>
 
