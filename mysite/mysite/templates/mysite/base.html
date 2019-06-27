@@ -11,9 +11,17 @@
   {% load static %}
 </head>
 <body>
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+  <div class='tour-step-background' style="background-color: black; color:white;padding-top:150px;
+  padding-bottom:50px;">
+    <div class='header text-center'>
+      <h1>Are you looking for a perspective <br>responsibly young person?</h1>
+      <p>London is the capital city of England. It is the most populous city in the United Kingdom,
+        with a metropolitan area of over 13 million inhabitants.</p>
+    </div>
+  </div>
+  <nav class="navbar navbar-expand-sm  navbar-dark fixed-top", style="background-color: black">
     <!-- Brand/logo -->
-    <a class="navbar-brand" href="{% url 'home_page_index' %}">
+    <a class="navbar-brand" href="{% url 'home_page_index' %} ">
       <img src="{% static 'bird.jpg' %}" alt="logo" class="rounded-circle" style="width:80px;">
     </a>
     <ul class="navbar-nav ml-auto">
