@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Category(models.Model):
-    """Model representing a project's category"""
+    """Model representing a projects' category"""
     name = models.CharField(max_length=200, help_text="Enter a project's category")
 
     def __str__(self):
@@ -11,6 +11,7 @@ class Category(models.Model):
 
 
 class Project(models.Model):
+    """Model representing a project"""
     title = models.CharField(max_length=500)
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
     short_description = models.TextField()
