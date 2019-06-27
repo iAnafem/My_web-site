@@ -19,11 +19,10 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', RedirectView.as_view(url='/home/'), name='home_page'),
-    path('home/', include("homepage.urls")),
+#   path('', RedirectView.as_view(url='/home/'), name='home_page'),
+    path('', include("homepage.urls", )),
 #    path('about/', include("infopages.urls")),
-#    path('civil-engineering/', include("portfolio.urls")),
-    path('software-development/', include("portfolio.urls")),
+    path('portfolio/', include("portfolio.urls")),
 #    path('blog/', include("blog.urls")),
 #    path('contact/', include("infopages.urls")),
 ]

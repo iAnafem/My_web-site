@@ -1,5 +1,12 @@
-from django.shortcuts import render
+from django.views import generic
+from .models import Home
 
 
-def home_index(request):
-    return render(request, 'home_index.html')
+class HomeIndex(generic.ListView):
+    model = Home
+    queryset = Home.objects.all()
+    template_name = 'homepage/home_index.html'
+
+
+
+
