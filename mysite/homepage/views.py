@@ -1,12 +1,9 @@
 from django.views import generic
-from .models import Home
+from .models import HomePage
 
 
-class HomeIndex(generic.ListView):
-    model = Home
-    queryset = Home.objects.all()
-    template_name = 'homepage/home_index.html'
-
-
-
+class HomePageContent(generic.ListView):
+    model = HomePage
+    queryset = HomePage.objects.all()
+    template_name = 'homepage/home_page_index.html'
 
