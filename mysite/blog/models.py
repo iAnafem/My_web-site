@@ -18,6 +18,13 @@ class Post(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
     categories = models.ManyToManyField('Category', related_name='posts')
 
+    @classmethod
+    def latest(cls):
+        """
+        :return: 3 latest posts
+        """
+        return cls.objects.all().order_by('-created_on')[:3]
+
     def __str__(self):
         """String for representing the Model object (in Admin site etc.)"""
         return self.title
