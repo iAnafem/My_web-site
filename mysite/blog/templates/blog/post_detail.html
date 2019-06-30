@@ -4,13 +4,13 @@
 <div class="col-md-12">
     <h1>{{ post.title }}</h1>
     <small>
-        {{ post.created_on.date }} |&nbsp;
+        {{ post.created_on.date }} |
         Categories:&nbsp;
-        {% for category in post.categories.all %}
-        <a href="{% url 'blog_category' category.name %}">
-            {{ category.name }}
-        </a>&nbsp;
-        {% endfor %}
+            {% for category in post.categories.all %}
+            <a href="{% url 'post_category' category.name %}">
+                {{ category.name }}
+            </a>&nbsp;
+            {% endfor %}
     </small>
     <p>{{ post.body | linebreaks }}</p>
     <h3>Leave a comment:</h3>
@@ -22,10 +22,12 @@
         <div class="form-group">
             {{ form.body }}
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+
+            <button type="submit" class="btn btn-primary" >Submit</button>
+
     </form>
     <h3>Comments:</h3>
-    {% for comment in comments %}
+    {% for comment in post.comments.all %}
     <p>
         On {{comment.created_on.date }}&nbsp;
         <b>{{ comment.author }}</b> wrote:

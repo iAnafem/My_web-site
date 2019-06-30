@@ -18,7 +18,6 @@ class Project(models.Model):
     technologies = models.CharField(max_length=500)
     main_image = models.FilePathField(path="portfolio/img/", null=True)
     full_description = models.TextField()
-    full_description_images = models.FilePathField(path="portfolio/img/", null=True)
 
     def __str__(self):
         """String for representing the Model object (in Admin site etc.)"""
@@ -31,4 +30,14 @@ class Comment(models.Model):
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     post = models.ForeignKey('Project', on_delete=models.CASCADE)
+
+
+def set_main_img(query, name):
+    """This method sets the main images to projects"""
+    for i, project in enumerate(query.filter(category__name__contains=name)):
+        p = project
+        p.main_image = f'portfolio/img/{name}_project{str(i)}.jpg'
+        p.save()
+
+
 

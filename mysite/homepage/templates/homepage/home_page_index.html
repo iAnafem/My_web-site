@@ -6,7 +6,7 @@
 {% block main_header %}
 
   <div class="container">
-      <h1>Are Are you looking for a promising responsible young person for the Python Junior Developer position?</h1>
+      <h1>Are you looking for a promising responsible young person for the Python Junior Developer position?</h1>
       <h4 style="font-style: oblique; color: #999999 ">Probably, I'll be able to impress you</h4>
   </div>
 
@@ -115,13 +115,20 @@
               <div class="card mb-2">
                 <img class="card-img-top " src="#" alt="photo">
                 <div class="card-body">
-                  <h5 class="card-title">{{ post.title }}</h5>
+                  <h4 class="card-title">{{ post.title }}</h4>
+                  <p class="card-title">Categories:
+                    {%for category in post.categories.all%}
+                      <a href="{% url 'post_category' category.name %}">
+                        {{ category.name }}
+                      </a>&nbsp;
+                    {% endfor %}
+                  </p>
                   <p class="card-text">
                     {{ post.body }}
                   </p>
                 </div>
                 <div class="card-footer">
-                  <a class="btn btn-dark" href="{% url 'blog_detail' post.pk %}">
+                  <a class="btn btn-dark" href="{% url 'post_detail' post.pk %}">
                      Read More
                   </a>
                 </div>
