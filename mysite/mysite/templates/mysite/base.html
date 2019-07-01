@@ -9,6 +9,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   {% load static %}
+
 </head>
 <body>
   <div class='tour-step-background' style="background-color: black; color:white;padding-top:120px;
@@ -27,7 +28,7 @@
         <a class="nav-link" href="{% url 'home_page_index' %}">HOME</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/infopages/about/">ABOUT</a>
+        <a class="nav-link" href="{% url 'about_index' %}">ABOUT</a>
       </li>
       <!-- Dropdown -->
       <li class="nav-item dropdown">
@@ -55,4 +56,9 @@
   </div>
 </div>
 
+{% block text_field %}{% endblock %}
+{% block content %}{% endblock %}
+{% block content1 %}{% endblock %}
+{% block content2 %}{% endblock %}
+{% block content3 %}{% endblock %}
 </body>

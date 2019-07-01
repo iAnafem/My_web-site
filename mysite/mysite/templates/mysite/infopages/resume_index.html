@@ -2,10 +2,95 @@
 
 {% load static %}
 
-{% block title %}<title>{{ flatpage.title }}</title>{% endblock %}
+{% block title %}<title>{{ flatpage.myflatpage.title }}</title>{% endblock %}
 
-{% block page_content %}
 
-  {{ flatpage.content }}
+
+{% block main_header %}
+
+  <div class="container">
+      <h1>{{ flatpage.myflatpage.header1|safe }}</h1>
+      <h4 style="font-style: oblique; color: #999999 ">{{ flatpage.myflatpage.header2|safe }}</h4>
+  </div>
+
+  <div class="container" style="padding: 20px">
+    <a href="/infopages/contact/">
+        <button type="button" class="btn btn-outline-dark btn-lg" style="color: white">
+            Contact me today!
+        </button>
+    </a>
+  </div>
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="table-responsive-lg">
+          <table class="table table-borderless align-center" style="text-align: center">
+            <thead>
+              <tr style="font-size: 30px">
+                <th>Technologies</th>
+                <th>Day-to-day comfort</th>
+                <th>Experienced with</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Anna</td>
+                <td>Pitt</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Anna</td>
+                <td>Pitt</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Anna</td>
+                <td>Pitt</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Anna</td>
+                <td>Pitt</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Anna</td>
+                <td>Pitt</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Anna</td>
+                <td>Pitt</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </div>
+</div>
+
+
+{{flatpage.myflatpage.content|safe }}
+
+
+{{flatpage.myflatpage.content1|safe }}
+
+{{flatpage.myflatpage.content2|safe }}
+
+{{flatpage.myflatpage.content3|safe}}
 
 {% endblock %}
+
+
+
+

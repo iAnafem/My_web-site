@@ -11,3 +11,4 @@ class HomePage(models.Model):
         """String for representing the Model object (in admin site etc.)"""
         return self.name
 
+

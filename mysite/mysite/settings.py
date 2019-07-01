@@ -51,8 +51,6 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -123,6 +121,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-SITE_ID = 1
+CURRENT_PATH = os.path.abspath(os.path.dirname(__file__))
+
+SITE_ID = 6
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+                    os.path.join(CURRENT_PATH, 'static'),
+)
