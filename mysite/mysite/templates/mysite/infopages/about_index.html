@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}<title>{{ flatpage.title }}</title>{% endblock %}
+
+{% block main_header %}
+<div class="container">
+      <h1>{{ flatpage.title }}</h1>
+      <h4 style="font-style: oblique; color: #999999 ">Probably, I'll be able to impress you</h4>
+  </div>
+
+  <div class="container" style="padding: 20px">
+    <a href="/infopages/contact/">
+        <button type="button" class="btn btn-outline-dark btn-lg" style="color: white">
+            Contact me today!
+        </button>
+    </a>
+  </div>
+
+{% endblock %}
+
+{% block page_content %}
+
+
+    {{ flatpage.content }}
+
+
+{% endblock %}
+
