@@ -24,70 +24,45 @@
 
 
 {% block content %}
-
-
-<div class="container-fluid">
-  <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-10">
-        <div class="table-responsive-lg">
-          <table class="table table-borderless align-center" style="text-align: center">
-            <thead>
-              <tr style="font-size: 30px">
-                <th>Technologies</th>
-                <th>Day-to-day comfort</th>
-                <th>Experienced with</th>
-
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Anna</td>
-                <td>Pitt</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Anna</td>
-                <td>Pitt</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Anna</td>
-                <td>Pitt</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Anna</td>
-                <td>Pitt</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Anna</td>
-                <td>Pitt</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Anna</td>
-                <td>Pitt</td>
-              </tr>
-            </tbody>
-          </table>
+    <div class="container-fluid" style="padding-top: 80px">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md">
+          <h2 style="text-align: center;font-style: oblique; font-family: Inconsolata">Technologies</h2>
+        </div>
+        <div class="col-md ">
+          <h5 style="text-align: center;">Day-to-day Comfort</h5>
+        </div>
+        <div class="col-md">
+          <h5 style="text-align: center;">Experienced with</h5>
+        </div>
+        <div class="col-md-1"></div>
       </div>
-      <div class="col-md-1"></div>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md"></div>
+        <div class="col-md align-center">
+          <p style="text-align: left; padding-left: 180px">{{flatpage.myflatpage.content|safe }}</p>
+        </div>
+        <div class="col-md">
+          <p style="text-align: left; padding-left: 180px ">{{flatpage.myflatpage.content1|safe }}</p>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+          <h2 style="text-align: center; padding-left: 80px;
+          font-style: oblique; font-family: Inconsolata">
+            Work Experience</h2>
+        </div>
+        <div class="col-md-7 ">
+          <p style="text-align: left; padding-left: 200px">{{flatpage.myflatpage.content2|safe }}</p>
+        </div>
+        <div class="col-md-1"></div>
+
+      </div>
     </div>
-  </div>
-</div>
-
-
-{{flatpage.myflatpage.content|safe }}
-
-
-{{flatpage.myflatpage.content1|safe }}
-
-{{flatpage.myflatpage.content2|safe }}
-
-{{flatpage.myflatpage.content3|safe}}
 
 {% endblock %}
 
