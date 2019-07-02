@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}<title>{{ flatpage.myflatpage.title }}</title>{% endblock %}
+
+{% block main_header %}
+
+  <div class="container">
+      <h1>{{ flatpage.myflatpage.header1|safe }}</h1>
+      <h4 style="font-style: oblique; color: #999999 ">{{ flatpage.myflatpage.header2|safe }}</h4>
+  </div>
+
+{% endblock %}
+
+{% block page_content %}
+<div class="container" style="padding-right: 100px">
+  <div class="row" style="padding-top: 50px">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div class="card" style="width:400px; background: #f0f0f0; border: 2px solid #666;">
+        <img class="card-img-top" src="{% static 'infopages/contact/img/avatar.png' %}" alt="Card image" style="width:100%">
+        <div class="card-body">
+          <h4 class="card-title"></h4>
+          <div class="card-text text-center">
+              <h4>Reach out to me directly if you so please</h4>
+            <p>
+              <strong>First name:</strong>&nbsp;&nbsp;&nbsp;&nbsp; Dmitriy
+            </p>
+            <p>
+              <strong>Last name:</strong>&nbsp;&nbsp;&nbsp;&nbsp; Pronkin
+            </p>
+            <p>
+              <strong>Phone:</strong>&nbsp;&nbsp;&nbsp;&nbsp; {{flatpage.myflatpage.content2|safe }}
+            </p>
+            <p>
+              <strong>Email:</strong>&nbsp;&nbsp;&nbsp;&nbsp; {{flatpage.myflatpage.content3|safe }}
+            </p>
+            <h4>You can also email me via <a href="{{flatpage.myflatpage.content|safe }}">VKontakte</a>
+              or <a href="{{flatpage.myflatpage.content1|safe }}">Facebook</a>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

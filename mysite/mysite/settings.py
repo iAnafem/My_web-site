@@ -38,9 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'homepage.apps.HomepageConfig',
-    'infopages.apps.InfopagesConfig',
     'portfolio.apps.PortfolioConfig',
     'blog.apps.BlogConfig',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
 ]
 
 MIDDLEWARE = [
@@ -50,7 +51,6 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['mysite/templates/mysite'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -121,4 +121,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+CURRENT_PATH = os.path.abspath(os.path.dirname(__file__))
+
+SITE_ID = 6
+
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+                    os.path.join(CURRENT_PATH, 'static'),
+)

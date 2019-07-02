@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}<title>Home</title>{% endblock %}
+{% block main_header %}
+
+  <div class="container">
+      <h1>Are you looking for a promising responsible young person for the Python Junior Developer position?</h1>
+      <h4 style="font-style: oblique; color: #999999 ">Probably, I'll be able to impress you</h4>
+  </div>
+
+  <div class="container" style="padding: 20px">
+    <a href="/infopages/contact/">
+        <button type="button" class="btn btn-outline-dark btn-lg" style="color: white">
+            Contact me today!
+        </button>
+    </a>
+  </div>
+{% endblock %}
+
+{% block page_content %}
+<h5 class="text-center" style="padding: 40px; text-align: center">
+    One year ago I began discovering for myself the amazing world of computer science. Since that,
+    I'm rapidly improving in that direction. I think I already have enough knowledge to make the next step.
+</h5>
+
+  <h2 class="header text-center" style="padding: 40px">My main software development projects</h2>
+  <div class="row" style="padding-left: 40px; padding-right: 40px">
+    {% for home in homepage_list %}
+      <div class="col-md-12">
+        <div class="card-deck">
+          {% for project in home.projects.all %}
+            {% if project.category.name == "Software development" %}
+              <div class="card mb-2">
+                <img class="card-img-top " src="{% static project.main_image %}" alt="photo">
+                <div class="card-body">
+                  <h5 class="card-title">{{ project.title }}</h5>
+                  <p class="card-text">
+                    <strong>Short description: </strong>{{ project.short_description }}
+                  </p>
+                  <p class="card-text">
+                    <strong>Technologies:</strong> {{ project.technologies }}
+                  </p>
+                </div>
+                <div class="card-footer">
+                  <a class="btn btn-dark" href="{% url 'software_project_detail' project.pk %}">
+                     Read More
+                  </a>
+                </div>
+              </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+
+  <div class="container text-center" style="padding-top: 20px; padding-bottom: 100px">
+    <a href="{% url 'software_projects_list' %}">
+        <button type="button" class="btn btn-outline-dark btn-lg" style="color: black;">
+            View more projects
+        </button>
+    </a>
+  </div>
+
+
+  <h2 class="header text-center" style="padding: 40px">My main civil engineering projects</h2>
+  <div class="row" style="padding-left: 40px; padding-right: 40px">
+    {% for home in homepage_list %}
+      <div class="col-md-12">
+        <div class="card-deck">
+          {% for project in home.projects.all %}
+            {% if project.category.name == "Civil engineering" %}
+              <div class="card mb-2">
+                <img class="card-img-top " src="{% static project.main_image %}" alt="photo">
+                <div class="card-body">
+                  <h5 class="card-title">{{ project.title }}</h5>
+                  <p class="card-text">
+                    <strong>Short description: </strong>{{ project.short_description }}
+                  </p>
+                  <p class="card-text">
+                    <strong>Technologies:</strong> {{ project.technologies }}
+                  </p>
+                </div>
+                <div class="card-footer">
+                  <a class="btn btn-dark" href="{% url 'civil_project_detail' project.pk %}">
+                     Read More
+                  </a>
+                </div>
+              </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+
+
+  <div class="container text-center" style="padding-top: 20px; padding-bottom: 100px">
+    <a href="{% url 'civil_projects_list' %}">
+        <button type="button" class="btn btn-outline-dark btn-lg " style="color: black;">
+            View more projects
+        </button>
+    </a>
+  </div>
+
+  <h2 class="header text-center" style="padding: 40px">My favourite blog posts</h2>
+  <div class="row" style="padding-left: 40px; padding-right: 40px">
+    {% for home in homepage_list %}
+      <div class="col-md-12">
+        <div class="card-deck">
+          {% for post in home.posts.all %}
+
+              <div class="card mb-2">
+                <img class="card-img-top " src="#" alt="photo">
+                <div class="card-body">
+                  <h4 class="card-title">{{ post.title }}</h4>
+                  <p class="card-title">Categories:
+                    {%for category in post.categories.all%}
+                      <a href="{% url 'post_category' category.name %}">
+                        {{ category.name }}
+                      </a>&nbsp;
+                    {% endfor %}
+                  </p>
+                  <p class="card-text">
+                    {{ post.body }}
+                  </p>
+                </div>
+                <div class="card-footer">
+                  <a class="btn btn-dark" href="{% url 'post_detail' post.pk %}">
+                     Read More
+                  </a>
+                </div>
+              </div>
+
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+
+
+  <div class="container text-center" style="padding-top: 20px; padding-bottom: 100px">
+    <a href="{% url 'blog_index' %}">
+        <button type="button" class="btn btn-outline-dark btn-lg " style="color: black;">
+            View more posts
+        </button>
+    </a>
+  </div>
+{% endblock %}
+

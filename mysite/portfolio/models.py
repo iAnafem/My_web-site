@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Category(models.Model):
-    """Model representing a project's category"""
+    """Model representing a projects' category"""
     name = models.CharField(max_length=200, help_text="Enter a project's category")
 
     def __str__(self):
@@ -11,11 +11,12 @@ class Category(models.Model):
 
 
 class Project(models.Model):
+    """Model representing a project"""
     title = models.CharField(max_length=500)
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
     short_description = models.TextField()
-    technology = models.CharField(max_length=500)
-    image = models.FilePathField(path="portfolio/static/img/")
+    technologies = models.CharField(max_length=500)
+    main_image = models.FilePathField(path="portfolio/img/", null=True)
     full_description = models.TextField()
 
     def __str__(self):
@@ -29,4 +30,14 @@ class Comment(models.Model):
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     post = models.ForeignKey('Project', on_delete=models.CASCADE)
+
+
+def set_main_img(query, name):
+    """This method sets the main images to projects"""
+    for i, project in enumerate(query.filter(category__name__contains=name)):
+        p = project
+        p.main_image = f'portfolio/img/{name}_project{str(i)}.jpg'
+        p.save()
+
+
 
