@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <style>
-      .passe-partout {
-      padding: 30px; /* Ширина паспарту */
-      background: #f0f0f0; /* Цвет фона  паспарту */
-      border: 2px solid #666; /* Параметры рамки */
-     }
-    </style>
-
-    {% block title %}<title>Pronkin Dmitriy</title>{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -20,12 +12,24 @@
 
   </head>
   <body>
-    <div class='tour-step-background' style="background-color: black;
-     color:white;padding-top:120px;
-    padding-bottom:20px;">
+    <div class='tour-step-background'
+         style="
+              background-image: url({% static 'homepage/img/back7.jpeg' %});
+              color:white;
+              padding-top:120px;
+              padding-bottom:20px;">
       <div class='header text-center'>
-        {% block main_header %}{% endblock %}
-
+        <div class="container">
+          <h1>{% block main_header %}{% endblock %}</h1>
+          <h4 style="font-style: oblique; color: #cccccc ">{% block secondary_header %}{% endblock %}</h4>
+        </div>
+        <div class="container" style="padding: 20px">
+          <a href="/infopages/contact/">
+            <button type="button" class="btn btn-light btn-lg" style="color: black">
+              {% block button %}{% endblock %}
+            </button>
+          </a>
+        </div>
       </div>
     </div>
     <nav class="navbar navbar-expand-sm  navbar-dark fixed-top">
@@ -76,12 +80,25 @@
   <br>
   <div class="footer fixed bottom align-center text-center"
        style="
-       background-color:black;
+       background-image: url({% static 'homepage/img/back9.jpg' %});
        padding: 10px;
        width: 100%;
        color: #fff;">
 
-    <h4>OLOLOLO</h4>
+    <h4>Contacts</h4>
+    <p><strong>Phone:</strong> +7-917-539-61-53</p>
+    <p><strong>Email:</strong> sidviciouc@gmail.com</p>
+    <div>
+      <a href="https://vk.com/id1629644">
+        <img src="{% static 'homepage/img/VK.png' %}" alt="" style="width: 70px; padding: 10px">
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=100005183502722">
+        <img src="{% static 'homepage/img/FB.jpg' %}" alt="" style="width: 68px; padding: 10px">
+      </a>
+      <a href="https://github.com/iAnafem">
+        <img src="{% static 'homepage/img/GH1.png' %}" alt="" style="width: 75px; padding: 15px 10px 10px;">
+      </a>
+    </div>
   </div>
 
 
