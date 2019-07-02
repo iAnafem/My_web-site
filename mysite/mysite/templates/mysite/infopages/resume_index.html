@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% load static %}
@@ -5,8 +6,8 @@
 {% block title %}<title>{{ flatpage.myflatpage.title }}</title>{% endblock %}
 
 
-
 {% block main_header %}
+
 
   <div class="container">
       <h1>{{ flatpage.myflatpage.header1|safe }}</h1>
@@ -38,11 +39,11 @@
 
           <!-- 2 row -->
           <tr>
-            <td style="padding-top: 50px;"></td>
+            <td></td>
             <td class="w-20 text-left" style="padding-left: 18vmin;">
                 {{flatpage.myflatpage.content|safe }}
             </td>
-            <td class="w-20 text-left" style="padding-left: 18vmin;padding-top: 50px;">
+            <td class="w-20 text-left" style="padding-left: 18vmin;;">
                 {{flatpage.myflatpage.content1|safe }}
             </td>
           </tr>
@@ -93,7 +94,8 @@
 
           <!-- 5 row -->
           <tr>
-            <td class="w-25 text-center" style="text-align: center;font-style: oblique;padding-top: 50px; font-family: Inconsolata">
+            <td class="w-25 text-center"
+                style="text-align: center;font-style: oblique;padding-top: 50px; font-family: Inconsolata">
               <h2><strong>Work Experience</strong></h2>
             </td>
             <td colspan="2" class="w-20 text-left" style="padding-left: 18vmin;padding-top: 50px;">
@@ -103,11 +105,53 @@
 
           <!-- 6 row -->
           <tr>
-            <td class="w-25 text-center" style="text-align: center;font-style: oblique; padding-top: 50px;font-family: Inconsolata">
+            <td class="w-25 text-center"
+                style="text-align: center;font-style: oblique;font-family: Inconsolata; padding-top: 50px">
               <h2><strong>Certificates</strong></h2>
             </td>
-            <td colspan="2" class="w-20 text-left" style="padding-left: 18vmin;padding-top: 50px;">
-                {{flatpage.myflatpage.content2|safe }}
+            <td class="w-20 text-center" style="padding-top: 50px;">
+                <a href="{% static 'infopages/resume/img/CSC_alg_1.png' %}">
+                    <img src="{% static 'infopages/resume/img/CSC_alg_1.png' %}" alt=""
+                         style="width:400px; background: #f0f0f0; border: 2px solid #666;">
+                </a>
+                <br>
+                <br>
+                <a href="{% static 'infopages/resume/img/BI_python_1.png' %}">
+                    <img src="{% static 'infopages/resume/img/BI_python_1.png' %}" alt=""
+                         style="width:400px; background: #f0f0f0; border: 2px solid #666;">
+                </a>
+                <br>
+                <br>
+                <a href="{% static 'infopages/resume/img/DB_sert.png' %}">
+                    <img src="{% static 'infopages/resume/img/DB_sert.png' %}" alt=""
+                         style="width:400px; background: #f0f0f0; border: 2px solid #666;">
+                </a>
+                <br>
+                <br>
+                <a href="{% static 'infopages/resume/img/MAIL_web.png' %}">
+                    <img src="{% static 'infopages/resume/img/MAIL_web.png' %}" alt=""
+                         style="width:400px; background: #f0f0f0; border: 2px solid #666;">
+                </a>
+            </td>
+            <td class="w-20 text-center" style="padding-top: 50px;">
+                <a href="{% static 'infopages/resume/img/CSC_alg_2.png' %}">
+                    <img src="{% static 'infopages/resume/img/CSC_alg_2.png' %}" alt=""
+                         style="width:400px; background: #f0f0f0; border: 2px solid #666;">
+                </a>
+                <br>
+                <br>
+                <a href="{% static 'infopages/resume/img/BI_python_2.png' %}">
+                    <img src="{% static 'infopages/resume/img/BI_python_2.png' %}" alt=""
+                         style="width:400px; background: #f0f0f0; border: 2px solid #666;">
+                </a>
+                <br>
+                <br>
+                <a href="{% static 'infopages/resume/img/JS.png' %}">
+                    <img src="{% static 'infopages/resume/img/JS.png' %}" alt=""
+                         style="width:400px; background: #f0f0f0; border: 2px solid #666;">
+                </a>
+                <br>
+                <br>
             </td>
           </tr>
         </tbody>
@@ -115,7 +159,7 @@
     </div>
 
 
-  <div class="container text-center" style="padding: 20px">
+  <div class="container text-center" style=" padding-top: 50px;">
       <a href="/infopages/contact/">
         <button type="button" class="btn btn-dark btn-lg" style="color: white">
           Contact me today!
@@ -124,6 +168,12 @@
   </div>
 </div>
 
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".fancybox").fancybox();
+	});
+</script>
 
 {% endblock %}
 
