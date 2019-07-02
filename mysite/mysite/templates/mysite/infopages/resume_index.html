@@ -99,7 +99,77 @@
               <h2><strong>Work Experience</strong></h2>
             </td>
             <td colspan="2" class="w-20 text-left" style="padding-left: 18vmin;padding-top: 50px;">
-                {{flatpage.myflatpage.content2|safe }}
+                <h6>
+                    <strong>
+                        LEAD ENGINEER
+                    </strong>
+                </h6>
+                <br>
+                <p>
+                    <strong>
+                      ООО ИЦ МИТ (Engineering "Center Bridges and tonnels"),
+                    </strong>
+                    Moscow, September 2012 &nbsp;-&nbsp;Present
+                </p>
+                <p>
+                    Work in this organization became the starting point on the way of my becoming a computer programmer.
+                    Due to the presence of a large number of objects and, as a result, a large amount of work and
+                    very tight deadlines that are given here for the execution of these works, I had a natural
+                    desire to somehow automate the routine processes that abound in design. From that moment on,
+                    I began to discover the fascinating world of computer programming.
+                    My main tool was Python. I wrote several useful
+                    <a href="{% url 'software_project_detail' pk=2 %}">scripts</a> that my colleagues are actively using,
+                    wrote a <a href="{% url 'software_project_detail' pk=1 %}">program for working with AutoCAD</a>,
+                    which you can see in my <a href="{% url 'software_projects_list' %}">portfolio</a>.
+                    In this organization, I participated in the creation of a large
+                    number of unique structures, including the <a href="{% url 'civil_project_detail' pk=7 %}">
+                    Crimean Bridge</a>, the <a href="{% url 'civil_project_detail' pk=6 %}">
+                    Bridge over the Volga River in the city of Dubna</a>,
+                    and many others. Also, here I got experience in project management.
+                </p>
+                <br>
+                <h6>
+                    <strong>
+                        DESIGN ENGINEER (First category)
+                    </strong>
+                </h6>
+                <br>
+                <p>
+                    <strong>
+                      НПО МОСТОВИК,
+                    </strong>
+                    Moscow, December 2009 &nbsp;-&nbsp;September 2012
+                </p>
+                <p>
+                    My real path in engineering began in this organization. I participated in the creation of
+                    dozens of large structures, including the
+                    <a href="{% url 'civil_project_detail' pk=5 %}">Bridge to the Russky Island</a> (city of Vladivostok)
+                    and Olympic facilities, which were built as part of Russia's preparation for the Olympics in Sochi.
+                    Here I learned to think in a complex way, to work for the result and to accomplish the set
+                    tasks within the tight deadlines.
+                </p>
+                <br>
+
+                <h6>
+                    <strong>
+                        DESIGN ENGINEER
+                    </strong>
+                </h6>
+                <br>
+                <p>
+                    <strong>
+                      ЗАО ТРАНСМОСТОСТРОЙ,
+                    </strong>
+                    Moscow, February 2008 &nbsp;-&nbsp;January 2009
+                </p>
+                <p>
+                    This is my first job in engineering. At that time I was a third year
+                    university student and I naturally did not perform any serious and responsible
+                    tasks due to lack of knowledge and the lack of any experience in designing.
+                    In fact, this year I became acquainted with the
+                    main elements of the supporting structures of
+                    pedestrian and road bridges, as well as honed my skills in Avtokad.
+                </p>
             </td>
           </tr>
 
@@ -169,11 +239,6 @@
 </div>
 
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		$(".fancybox").fancybox();
-	});
-</script>
 
 {% endblock %}
 
