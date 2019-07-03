@@ -1,8 +1,20 @@
 {% extends "base.html" %}
+
+{% load static %}
+
+{% block title %} Blog {% endblock %}
+
+{% block main_header %} Here is what I'm interested in  {% endblock %}
+
+{% block secondary_header %} Several interesting articles, both my and other authors {% endblock %}
+
+{% block button-href %} / {% endblock %}
+{% block button %} Home page {% endblock %}
+
 {% block page_content %}
 
 <div class="col-md-12">
-    <h1>Blog Index</h1>
+    <h1>Posts</h1>
     <hr>
     {% for post in post_list %}
     <h2><a href="{% url 'post_detail' post.pk%}">{{ post.title }}</a></h2>

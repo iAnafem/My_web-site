@@ -1,8 +1,12 @@
 {% extends "base.html" %}
-{% block page_content %}
 
-<div class="col-md-12">
-    <h1>{{ post.title }}</h1>
+{% load static %}
+
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block main_header %} {{ post.title }}  {% endblock %}
+
+{% block secondary_header %}
     <small>
         {{ post.created_on.date }} |
         Categories:&nbsp;
@@ -12,9 +16,17 @@
             </a>&nbsp;
             {% endfor %}
     </small>
-    <p>{{ post.body | linebreaks }}</p>
+{% endblock %}
+
+{% block button-href %} /blog/ {% endblock %}
+{% block button %} All posts {% endblock %}
+
+{% block page_content %}
+
+<div class="col-md-12" style="padding-top: 50px">
+    <p>{{ post.body }}</p>
     <h3>Leave a comment:</h3>
-    <form action="/blog/{{ post.pk }}/" method="post">
+    <form action="/blog/{{ post.pk }}/" method="post" style="width: 50%; ">
         {% csrf_token %}
         <div class="form-group">
             {{ form.author }}

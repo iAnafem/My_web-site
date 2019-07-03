@@ -1,20 +1,15 @@
-
 {% extends "base.html" %}
 
 {% load static %}
 
-{% block title %}<title>{{ flatpage.myflatpage.title }}</title>{% endblock %}
+{% block title %} {{ flatpage.myflatpage.title }} {% endblock %}
 
+{% block main_header %} {{ flatpage.myflatpage.header1|safe }} {% endblock %}
 
-{% block main_header %}
+{% block secondary_header %} {{ flatpage.myflatpage.header2|safe }} {% endblock %}
 
-
-  <div class="container">
-      <h1>{{ flatpage.myflatpage.header1|safe }}</h1>
-      <h4 style="font-style: oblique; color: #999999 ">{{ flatpage.myflatpage.header2|safe }}</h4>
-  </div>
-{% endblock %}
-
+{% block button-href %} /infopages/about/ {% endblock %}
+{% block button %} About me {% endblock %}
 
 {% block content %}
 <div style="background-color: whitesmoke">

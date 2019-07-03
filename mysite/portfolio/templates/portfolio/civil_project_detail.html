@@ -2,7 +2,14 @@
 
 {% load static %}
 
-{% block title %}<title>{{ project.title }}</title>{% endblock %}
+{% block title %} {{ project.title }} {% endblock %}
+
+{% block main_header %} {{ project.title }} {% endblock %}
+
+{% block secondary_header %} {{ project.short_description }} {% endblock %}
+
+{% block button-href %} /portfolio/civil-engineering/ {% endblock %}
+{% block button %} All projects {% endblock %}
 
 {% block page_content %}
   <style>
@@ -10,7 +17,6 @@
   .carousel-inner img {
     width: 100%;
     height: 100%;
-    ali
   }
   </style>
   <div class="row" style="padding-top: 100px">
@@ -26,22 +32,22 @@
                 <div class="carousel-item active">
                   <img src="{% static project.main_image %}" alt="Los Angeles" width="1100" height="500">
                   <div class="carousel-caption">
-                    <h3>Los Angeles</h3>
-                    <p>We had such a great time in LA!</p>
+                    <h3></h3>
+                    <p></p>
                   </div>
                 </div>
                 <div class="carousel-item">
                   <img src="{% static project.main_image %}" alt="Chicago" width="1100" height="500">
                   <div class="carousel-caption">
-                    <h3>Chicago</h3>
-                    <p>Thank you, Chicago!</p>
+                    <h3></h3>
+                    <p></p>
                   </div>
                 </div>
                 <div class="carousel-item">
                   <img src="{% static project.main_image %}" alt="New York" width="1100" height="500">
                   <div class="carousel-caption">
-                    <h3>New York</h3>
-                    <p>We love the Big Apple!</p>
+                    <h3></h3>
+                    <p></p>
                   </div>
                 </div>
               </div>
@@ -57,10 +63,9 @@
   <div class="row" style="padding-top: 20px">
       <div class="col-md-1"></div>
       <div class="col-md-10">
-          <h1>{{ project.title }}</h1>
-          <h2>{{ project.short_description }}</h2>
-          <h3>{{ project.technologies }}</h3>
-          <h4>{{ project.full_description }}</h4>
+
+          <h6>{{ project.technologies }}</h6>
+          <p>{{ project.full_description }}</p>
       </div>
   </div>
 

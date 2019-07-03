@@ -2,24 +2,14 @@
 
 {% load static %}
 
-{% block title %}<title>{{ flatpage.myflatpage.title }}</title>{% endblock %}
+{% block title %} {{ flatpage.myflatpage.title }} {% endblock %}
 
-{% block main_header %}
+{% block main_header %} {{ flatpage.myflatpage.header1|safe }} {% endblock %}
 
-  <div class="container">
-      <h1>{{ flatpage.myflatpage.header1|safe }}</h1>
-      <h4 style="font-style: oblique; color: #999999 ">{{ flatpage.myflatpage.header2|safe }}</h4>
-  </div>
+{% block secondary_header %} {{ flatpage.myflatpage.header2|safe }} {% endblock %}
 
-  <div class="container" style="padding: 20px">
-    <a href="/infopages/contact/">
-        <button type="button" class="btn btn-outline-dark btn-lg" style="color: white">
-            Contact me today!
-        </button>
-    </a>
-  </div>
-{% endblock %}
-
+{% block button-href %} /infopages/about/ {% endblock %}
+{% block button %} About me {% endblock %}
 
 
 {% block page_content %}

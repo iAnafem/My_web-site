@@ -2,7 +2,14 @@
 
 {% load static %}
 
-{% block title %}<title>Software development projects</title>{% endblock %}
+{% block title %} Software development projects {% endblock %}
+
+{% block main_header %} My software development projects {% endblock %}
+
+{% block secondary_header %} My first steps in a computer programming {% endblock %}
+
+{% block button-href %} /portfolio/civil-engineering/ {% endblock %}
+{% block button %} My civil engineering projects {% endblock %}
 
 {% block page_content %}
 <h1>Projects</h1>
@@ -15,7 +22,7 @@
                 <h5 class="card-title">{{ project.title }}</h5>
                 <p class="card-text">{{ project.short_description }}</p>
                 <a href="{% url 'software_project_detail' project.pk %}"
-                   class="btn btn-primary">
+                   class="btn btn-dark">
                     Read More
                 </a>
             </div>

@@ -2,7 +2,14 @@
 
 {% load static %}
 
-{% block title %}<title>{{ project.title }}</title>{% endblock %}
+{% block title %} {{ project.title }} {% endblock %}
+
+{% block main_header %} {{ project.title }} {% endblock %}
+
+{% block secondary_header %} {{ project.short_description }} {% endblock %}
+
+{% block button-href %} /portfolio/software-development/ {% endblock %}
+{% block button %} All projects {% endblock %}
 
 {% block page_content %}
   <div class="row" style="padding-top: 100px">
@@ -14,10 +21,8 @@
   <div class="row" style="padding-top: 20px">
       <div class="col-md-1"></div>
       <div class="col-md-10">
-          <h1>{{ project.title }}</h1>
-          <h2>{{ project.short_description }}</h2>
-          <h3>{{ project.technologies }}</h3>
-          <h4>{{ project.full_description }}</h4>
+          <h6>{{ project.technologies }}</h6>
+          <p>{{ project.full_description|safe }}</p>
       </div>
   </div>
 
