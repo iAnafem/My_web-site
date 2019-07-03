@@ -23,13 +23,15 @@
           <h1>{% block main_header %}{% endblock %}</h1>
           <h4 style="font-style: oblique; color: #cccccc ">{% block secondary_header %}{% endblock %}</h4>
         </div>
-        <div class="container" style="padding: 20px">
-          <a href="{% block button-href %}/infopages/contact/{% endblock %}">
-            <button type="button" class="btn btn-light btn-lg" style="color: black">
-              {% block button %} Contact me today! {% endblock %}
-            </button>
-          </a>
-        </div>
+          <div class="container" style="padding: 20px">
+
+            <a href="{% block button-href %}/infopages/contact/{% endblock %}">
+              <button type="button" class="btn btn-light btn-lg" style="color: black">
+                {% block button %} Contact me today! {% endblock %}
+              </button>
+            </a>
+
+          </div>
       </div>
     </div>
 

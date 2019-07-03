@@ -1,9 +1,11 @@
-from .forms import CommentForm
+from .forms import CommentForm, PostForm
 from django.views import generic
 from .models import Post, Comment, Category
 from django.shortcuts import get_object_or_404
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import FormMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 
 class BlogIndex(generic.ListView):
@@ -67,6 +69,26 @@ class PostDetail(FormMixin, generic.DetailView):
         # Here, we would record the user's interest using the message
         # passed in form.cleaned_data['message']
         return super().form_valid(form)
+
+
+class CreatePostView(generic.CreateView):
+    model = Post
+    # permission_required = 'catalog.can_create_posts'
+    form_class = PostForm
+    template_name = 'blog/create_post.html'
+    success_url = reverse_lazy('blog_index')
+
+
+class UpdatePostView(generic.UpdateView):
+    model = Post
+    # permission_required = 'catalog.can_create_posts'
+    fields = '__all__'
+
+
+class DeletePostView(generic.DeleteView):
+    model = Post
+    # permission_required = 'catalog.can_mark_returned'
+    success_url = reverse_lazy('blog_index')
 
 
 """

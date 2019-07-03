@@ -15,6 +15,10 @@
 <div class="col-md-12" style="padding-top: 50px">
     {% for post in post_list %}
         <h2><a href="{% url 'post_detail' post.pk%}">{{ post.title }}</a></h2>
+        {% if post.cover %}
+          <img src="{{ post.cover.url}}" alt="{{ post.title }}">
+        {% endif %}
+        <div>
         <small>
             {{ post.created_on.date }} |&nbsp;
             Categories:&nbsp;
@@ -24,6 +28,7 @@
             </a>&nbsp;
             {% endfor %}
         </small>
+        </div>
         <p>{{ post.body | slice:":400" }}...</p>
     {% endfor %}
 </div>

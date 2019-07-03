@@ -108,7 +108,11 @@
           {% for post in home.posts.all %}
 
               <div class="card mb-2">
-                <img class="card-img-top " src="#" alt="photo">
+                {% if post.cover %}
+                  <a href="{% url 'post_detail' post.pk%}">
+                    <img class="card-img-top " src="{{ post.cover.url}}" alt="photo">
+                  </a>
+                {% endif %}
                 <div class="card-body">
                   <h4 class="card-title">{{ post.title }}</h4>
                   <p class="card-title">Categories:
@@ -118,9 +122,9 @@
                       </a>&nbsp;
                     {% endfor %}
                   </p>
-                  <p class="card-text">
-                    {{ post.body }}
-                  </p>
+                    <p class="card-text">
+                      {{ post.body }}
+                    </p>
                 </div>
                 <div class="card-footer">
                   <a class="btn btn-dark" href="{% url 'post_detail' post.pk %}">
