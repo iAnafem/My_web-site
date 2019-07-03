@@ -1,21 +1,43 @@
 {% extends "base.html" %}
+
+{% load static %}
+
+{% block title %} Blog {% endblock %}
+
+{% block main_header %} Here is what I'm interested in  {% endblock %}
+
+{% block secondary_header %} Several interesting articles, both my and other authors {% endblock %}
+
+{% block button-href %} /blog/create/ {% endblock %}
+{% block button %} Create new post {% endblock %}
+
 {% block page_content %}
 
-<div class="col-md-12">
-    <h1>Blog Index</h1>
-    <hr>
+<div class="col-md-12" style="padding-top: 50px;">
+
     {% for post in post_list %}
-    <h2><a href="{% url 'post_detail' post.pk%}">{{ post.title }}</a></h2>
-    <small>
-        {{ post.created_on.date }} |&nbsp;
-        Categories:&nbsp;
-        {% for category in post.categories.all %}
-        <a href="{% url 'post_category' category.name %}">
-            {{ category.name }}
-        </a>&nbsp;
-        {% endfor %}
-    </small>
-    <p>{{ post.body | slice:":400" }}...</p>
+        <div class="container">
+          <div class="align-center text-center">
+            {% if post.cover %}
+              <a href="{% url 'post_detail' post.pk%}">
+                <img class="card-img-top " src="{{ post.cover.url}}" alt="photo" style="width: 500px">
+              </a>
+            {% endif %}
+            <div>
+                <small>
+                  {{ post.created_on.date }} |&nbsp;
+                  Categories:&nbsp;
+                  {% for category in post.categories.all %}
+                  <a href="{% url 'post_category' category.name %}">
+                    {{ category.name }}
+                  </a>&nbsp;
+                  {% endfor %}
+                </small>
+            </div>
+            <h2 style="padding-top: 10px"><a href="{% url 'post_detail' post.pk%}">{{ post.title }}</a></h2>
+          </div>
+          <p style="padding-bottom: 30px">{{ post.body | slice:":400" }}...</p>
+        </div>
     {% endfor %}
 </div>
 {% endblock %}

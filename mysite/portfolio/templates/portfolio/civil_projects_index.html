@@ -2,7 +2,14 @@
 
 {% load static %}
 
-{% block title %}<title>Civil engineering projects</title>{% endblock %}
+{% block title %} Civil engineering projects {% endblock %}
+
+{% block main_header %} Here are the most unique structures in creating I've participated {% endblock %}
+
+{% block secondary_header %} They are really amazing, aren't they? {% endblock %}
+
+{% block button-href %} /portfolio/software-development/ {% endblock %}
+{% block button %} My software development projects {% endblock %}
 
 {% block page_content %}
 <h1>Projects</h1>
@@ -15,7 +22,7 @@
                 <h5 class="card-title">{{ project.title }}</h5>
                 <p class="card-text">{{ project.short_description }}</p>
                 <a href="{% url 'civil_project_detail' project.pk %}"
-                   class="btn btn-primary">
+                   class="btn btn-dark">
                     Read More
                 </a>
             </div>

@@ -1,8 +1,13 @@
 {% extends "base.html" %}
-{% block page_content %}
 
-<div class="col-md-12">
-    <h1>{{ post.title }}</h1>
+{% load static %}
+
+
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block main_header %} {{ post.title }}  {% endblock %}
+
+{% block secondary_header %}
     <small>
         {{ post.created_on.date }} |
         Categories:&nbsp;
@@ -12,9 +17,57 @@
             </a>&nbsp;
             {% endfor %}
     </small>
-    <p>{{ post.body | linebreaks }}</p>
+{% endblock %}
+
+{% block button-href %} /blog/ {% endblock %}
+{% block button %} All posts {% endblock %}
+
+{% block page_content %}
+
+
+<div class="col-md-12" style="padding-top: 50px">
+    {% if post.cover %}
+      <img src="{{ post.cover.url}}" alt="{{ post.title }}">
+    {% endif %}
+    <p>{{ post.body }}</p>
+
+  <a href="{% url 'update_post' post.pk%}">
+   <button type="submit" class="btn btn-dark" >Update</button>
+  </a>
+  <!-- Button to Open the Modal -->
+  <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#myModal">
+    Delete
+  </button>
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Delete Post </h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <p>Are you sure you want to delete the post: {{ post.title }}?</p>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <form action="{% url 'delete_post' post.pk%}" method="POST">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-danger" value="Yes, delete.">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <h3>Leave a comment:</h3>
-    <form action="/blog/{{ post.pk }}/" method="post">
+    <form action="/blog/{{ post.pk }}/" method="post" style="width: 50%; ">
         {% csrf_token %}
         <div class="form-group">
             {{ form.author }}
@@ -22,8 +75,7 @@
         <div class="form-group">
             {{ form.body }}
         </div>
-
-            <button type="submit" class="btn btn-primary" >Submit</button>
+        <button type="submit" class="btn btn-dark" >Submit</button>
 
     </form>
     <h3>Comments:</h3>

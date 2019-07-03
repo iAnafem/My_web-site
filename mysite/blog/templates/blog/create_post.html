@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %} Create post {% endblock %}
+
+{% block main_header %} Create post {% endblock %}
+
+{% block secondary_header %}  {% endblock %}
+
+{% block button-href %} /blog/ {% endblock %}
+{% block button %} All posts {% endblock %}
+
+{% block page_content %}
+
+<div style="padding-top: 50px">
+  <form method="post" enctype="multipart/form-data" style="vertical-align: text-top">
+    {% csrf_token %}
+
+      {{ form.as_p }}
+
+    <button type="submit" class="btn btn-dark">Submit New Post</button>
+  </form>
+</div>
+
+{% endblock %}

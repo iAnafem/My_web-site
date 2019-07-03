@@ -129,7 +129,7 @@ USE_TZ = True
 
 CURRENT_PATH = os.path.abspath(os.path.dirname(__file__))
 
-SITE_ID = 1
+SITE_ID = 6
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -139,6 +139,10 @@ STATICFILES_DIRS = (
                     os.path.join(CURRENT_PATH, 'static'),
 )
 
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Heroku: Update database configuration from $DATABASE_URL.
 
 db_from_env = dj_database_url.config(conn_max_age=500)
@@ -147,3 +151,4 @@ DATABASES['default'].update(db_from_env)
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
