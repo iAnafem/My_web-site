@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'zo4vb95th*g*krij^le(cq2uc_4w$#
 # DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['mighty-waters-12968.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['enigmatic-brushlands-44443.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
