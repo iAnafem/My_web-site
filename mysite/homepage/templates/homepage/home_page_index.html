@@ -2,22 +2,17 @@
 
 {% load static %}
 
-{% block title %}<title>Home</title>{% endblock %}
+{% block title %}Home{% endblock %}
+
 {% block main_header %}
-
-  <div class="container">
-      <h1>Are you looking for a promising responsible young person for the Python Junior Developer position?</h1>
-      <h4 style="font-style: oblique; color: #999999 ">Probably, I'll be able to impress you</h4>
-  </div>
-
-  <div class="container" style="padding: 20px">
-    <a href="/infopages/contact/">
-        <button type="button" class="btn btn-outline-dark btn-lg" style="color: white">
-            Contact me today!
-        </button>
-    </a>
-  </div>
+  Are you looking for a promising responsible young person for the Python Junior Developer position?
 {% endblock %}
+
+{% block secondary_header %} Probably, I'll be able to impress you {% endblock %}
+
+{% block button %}Contact me today!{% endblock %}
+
+
 
 {% block page_content %}
 <h5 class="text-center" style="padding: 40px; text-align: center">
