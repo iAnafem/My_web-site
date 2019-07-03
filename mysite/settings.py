@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'zo4vb95th*g*krij^le(cq2uc_4w$#
 # DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mighty-waters-12968.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -129,7 +129,7 @@ USE_TZ = True
 
 CURRENT_PATH = os.path.abspath(os.path.dirname(__file__))
 
-SITE_ID = 6
+SITE_ID = 1
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
