@@ -48,7 +48,7 @@
         <ul class="navbar-nav mr-auto" style="padding-top: 10px">
           {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'home_page_index' %}">{{ user }}</a>
+              <a class="nav-link" href="{% url 'profile_detail' user.pk %}">{{ user }}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'logout' %}?next={{request.path}}" >Logout</a>
@@ -58,7 +58,7 @@
                 <a class="nav-link" href="{% url 'login' %}?next={{request.path}}" >Login </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'signup' %}?next={{request.path}}" >Registration</a>
+                <a class="nav-link" href="{% url 'signup' %}?next={{request.path}}" >Signup</a>
             </li>
           {% endif %}
         </ul>
