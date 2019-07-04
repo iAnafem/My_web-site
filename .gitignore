@@ -5,3 +5,5 @@ myvenv
 venv
 .idea
 *.xml
+db.sqlite3
+initial
