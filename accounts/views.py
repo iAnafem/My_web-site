@@ -21,3 +21,4 @@ class SignUp(generic.FormView):
         login(self.request, user)
         return HttpResponseRedirect(reverse('home_page_index'))
 
+
