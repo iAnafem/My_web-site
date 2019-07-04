@@ -18,7 +18,7 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     categories = models.ManyToManyField('Category', related_name='posts')
-    cover = models.FileField(upload_to='images/', null=True, blank=True)
+    cover = models.FileField(upload_to='images/blog/', null=True, blank=True)
 
     def __str__(self):
         """String for representing the Model object (in Admin site etc.)"""
