@@ -130,7 +130,7 @@ USE_TZ = True
 
 CURRENT_PATH = os.path.abspath(os.path.dirname(__file__))
 
-SITE_ID = 6
+SITE_ID = 1
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 

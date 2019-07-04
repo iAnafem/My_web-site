@@ -28,7 +28,9 @@
           {% for project in home.projects.all %}
             {% if project.category.name == "Software development" %}
               <div class="card mb-2">
-                <img class="card-img-top " src="{% static project.main_image %}" alt="photo">
+                <a class="btn btn-dark" href="{% url 'software_project_detail' project.pk %}">
+                  <img class="card-img-top " src="{{ project.main_image.url}}" alt="photo">
+                </a>
                 <div class="card-body">
                   <h5 class="card-title">{{ project.title }}</h5>
                   <p class="card-text">
@@ -68,7 +70,9 @@
           {% for project in home.projects.all %}
             {% if project.category.name == "Civil engineering" %}
               <div class="card mb-2">
-                <img class="card-img-top " src="{% static project.main_image %}" alt="photo">
+                <a class="btn btn-dark" href="{% url 'civil_project_detail' project.pk %}">
+                  <img class="card-img-top " src="{{ project.main_image.url}}" alt="photo">
+                </a>
                 <div class="card-body">
                   <h5 class="card-title">{{ project.title }}</h5>
                   <p class="card-text">
