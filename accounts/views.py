@@ -3,6 +3,7 @@ from .forms import SignUpForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.views import generic
+from django.contrib.auth.models import User
 
 
 class SignUp(generic.FormView):
@@ -22,3 +23,6 @@ class SignUp(generic.FormView):
         return HttpResponseRedirect(reverse('home_page_index'))
 
 
+class UserDetailView(generic.DetailView):
+    model = User
+    template_name = 'accounts/profile_detail.html'

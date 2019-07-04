@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<p> OLOLOHSA </p>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %} {{ user.username }} {% endblock %}
+
+{% block main_header %} {{ user.username }} {% endblock %}
+
+{% block secondary_header %} {{ user.last_name }} {{ user.first_name }} {% endblock %}
+
+{% block button-href %} / {% endblock %}
+{% block button %} Home page {% endblock %}
+
+{% block page_content %}
+    {{ user.first_name }}
+    {{ user.last_name }}
+    {{ user.occupation }}
+    {{ user.short_biography }}
+    {{ user.location}}
+    {{ user.username }}
+    {{ user.email }}
+
+
+{% endblock %}
