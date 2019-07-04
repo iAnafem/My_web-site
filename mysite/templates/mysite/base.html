@@ -35,7 +35,8 @@
       </div>
     </div>
 
-    <nav class="navbar navbar-expand-sm  navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top"
+         style="background-image: url('{% static 'homepage/img/back13.jpg'%}')">
       <!-- Brand/logo -->
       <a class="navbar-brand" href="{% url 'home_page_index' %} ">
         <img src="{% static 'bird.jpg' %}" alt="logo" class="rounded-circle" style="width:80px;">
@@ -44,6 +45,23 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="collapsibleNavbar" style="text-align: right">
+        <ul class="navbar-nav mr-auto" style="padding-top: 10px">
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home_page_index' %}">{{ user }}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}?next={{request.path}}" >Logout</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}?next={{request.path}}" >Login </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'signup' %}?next={{request.path}}" >Registration</a>
+            </li>
+          {% endif %}
+        </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="{% url 'home_page_index' %}" >HOME</a>
@@ -71,6 +89,7 @@
         </ul>
       </div>
     </nav>
+
   {% block carousel %}{% endblock %}
   <div class='tour-step-background' style="background-color: whitesmoke">
     <div class="container-fluid" style="padding-left: 100px; padding-right: 100px; padding-bottom: 50px">

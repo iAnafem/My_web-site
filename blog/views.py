@@ -71,7 +71,8 @@ class PostDetail(FormMixin, generic.DetailView):
         return super().form_valid(form)
 
 
-class CreatePostView(generic.CreateView):
+class CreatePostView(LoginRequiredMixin, generic.CreateView):
+    login_url = '/accounts/login/'
     model = Post
     # permission_required = 'catalog.can_create_posts'
     form_class = PostForm
@@ -79,13 +80,15 @@ class CreatePostView(generic.CreateView):
     success_url = reverse_lazy('blog_index')
 
 
-class UpdatePostView(generic.UpdateView):
+class UpdatePostView(LoginRequiredMixin, generic.UpdateView):
+    login_url = '/accounts/login/'
     model = Post
     # permission_required = 'catalog.can_create_posts'
     fields = '__all__'
 
 
-class DeletePostView(generic.DeleteView):
+class DeletePostView(LoginRequiredMixin, generic.DeleteView):
+    login_url = '/accounts/login/'
     model = Post
     # permission_required = 'catalog.can_mark_returned'
     success_url = reverse_lazy('blog_index')

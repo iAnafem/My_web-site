@@ -16,7 +16,7 @@ class Project(models.Model):
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
     short_description = models.TextField()
     technologies = models.CharField(max_length=500)
-    main_image = models.FilePathField(path="portfolio/img/", null=True)
+    main_image = models.FilePathField(path="portfolio/img/", null=True, blank=True)
     full_description = models.TextField()
 
     def __str__(self):

@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'zo4vb95th*g*krij^le(cq2uc_4w$#
 # DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['enigmatic-brushlands-44443.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['enigmatic-brushlands-44443.herokuapp.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'django.contrib.sites',
     'django.contrib.flatpages',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -64,7 +65,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['mysite/templates/mysite'],
+        'DIRS': ['mysite/templates/mysite', os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,15 +130,13 @@ USE_TZ = True
 
 CURRENT_PATH = os.path.abspath(os.path.dirname(__file__))
 
-SITE_ID = 1
+SITE_ID = 6
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-                    os.path.join(CURRENT_PATH, 'static'),
-)
+STATICFILES_DIRS = (os.path.join(CURRENT_PATH, 'static'),)
 
 MEDIA_URL = '/media/'
 
@@ -152,3 +151,4 @@ DATABASES['default'].update(db_from_env)
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+LOGIN_REDIRECT_URL = '/'

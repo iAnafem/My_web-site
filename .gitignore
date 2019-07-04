@@ -2,8 +2,6 @@
 *~
 __pycache__
 myvenv
-initial
 venv
 .idea
 *.xml
-db.sqlite3
