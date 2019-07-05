@@ -1,13 +1,14 @@
 from django.urls import reverse_lazy, reverse
-from .forms import SignUpForm
+# from .forms import SignUpForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.views import generic
-from django.contrib.auth.models import User
+from .forms import CustomUserCreationForm
+from .models import CustomUser
 
 
 class SignUp(generic.FormView):
-    form_class = SignUpForm
+    form_class = CustomUserCreationForm
     success_url = reverse_lazy('home_page_index')
     template_name = 'accounts/signup.html'
 
@@ -24,5 +25,5 @@ class SignUp(generic.FormView):
 
 
 class UserDetailView(generic.DetailView):
-    model = User
+    model = CustomUser
     template_name = 'accounts/profile_detail.html'

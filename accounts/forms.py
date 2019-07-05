@@ -1,26 +1,17 @@
-from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from .models import CustomUser
 
 
-class SignUpForm(UserCreationForm):
-    first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
-    last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
-    occupation = forms.CharField(max_length=30, required=False, help_text='Optional.')
-    short_biography = forms.CharField(max_length=1000, required=False, help_text='Optional.')
-    location = forms.CharField(max_length=300, required=False, help_text='Optional.')
-    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+class CustomUserCreationForm(UserCreationForm):
 
-    class Meta:
-        model = User
-        fields = (
-            'username',
-            'first_name',
-            'last_name',
-            'occupation',
-            'short_biography',
-            'location',
-            'email',
-            'password1',
-            'password2',
-        )
+    class Meta(UserCreationForm):
+        model = CustomUser
+        fields = ('username', 'email')
+
+
+class CustomUserChangeForm(UserChangeForm):
+
+    class Meta(UserChangeForm):
+        model = CustomUser
+        fields = UserChangeForm.Meta.fields
+
