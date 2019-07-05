@@ -25,7 +25,7 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        """Returns the url to access a particular author instance."""
+        """Returns the url to access a particular post instance."""
         return reverse('post_detail', args=[str(self.pk)])
 
 
