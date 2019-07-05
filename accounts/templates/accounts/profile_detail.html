@@ -12,7 +12,9 @@
 {% block button %} Home page {% endblock %}
 
 {% block page_content %}
-    <img src="{{ user.avatar.url }}" alt="Los Angeles">
+    {% if user.avatar %}
+      <img src="{{ user.avatar.url }}" alt="Los Angeles">
+    {%  endif %}
     {{ user.first_name }}
     {{ user.last_name }}
     {{ user.gender }}

@@ -10,7 +10,7 @@ class CustomUserAdmin(UserAdmin):
     model = CustomUser
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
-    list_display = ['username', 'first_name', 'last_name','gender', 'date_of_birth']
+    list_display = ['username', 'email', 'first_name', 'last_name', 'gender', 'date_of_birth']
     fieldsets = UserAdmin.fieldsets + (
         ('Additional information', {'fields': ('gender', 'date_of_birth', 'biography', 'avatar',)}),
     )

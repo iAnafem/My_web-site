@@ -28,8 +28,8 @@ urlpatterns = [
     path('infopages/about/', views.flatpage, {'url': 'infopages/about/'}, name='about_index'),
     path('infopages/resume/', views.flatpage, {'url': 'infopages/resume/'}, name='resume_index'),
     path('infopages/contact/', views.flatpage, {'url': 'infopages/contact/'}, name='contact_index'),
-    path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('accounts.urls')),
+    path('users/', include('allauth.urls'))
 ]
 
 if settings.DEBUG:
