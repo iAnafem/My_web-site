@@ -19,7 +19,10 @@
     {{ user.last_name }}
     {{ user.gender }}
     {{ user.biography }}
-    {{ user.date_of_birth}}
+    {% for comment in user.comments.all %}
+        <p> Post: <strong>{{ comment.post }}</strong></p>
+        <p> {{ comment.body }}</p>
+    {% endfor %}
 
 
 {% endblock %}

@@ -9,13 +9,7 @@
 
 {% block secondary_header %}
     <small>
-        {{ post.created_on.date }} |
-        Categories:&nbsp;
-            {% for category in post.categories.all %}
-            <a href="{% url 'post_category' category.name %}">
-                {{ category.name }}
-            </a>&nbsp;
-            {% endfor %}
+        Created by {{ post.author.username }} | {{ post.created_on.date }} |
     </small>
 {% endblock %}
 
@@ -24,11 +18,18 @@
 
 {% block page_content %}
 
-
 <div class="col-md-12" style="padding-top: 50px">
     {% if post.cover %}
       <img src="{{ post.cover.url}}" alt="{{ post.title }}">
     {% endif %}
+    <small>
+    Categories:&nbsp;
+        {% for category in post.categories.all %}
+        <a href="{% url 'post_category' category.name %}">
+            {{ category.name }}
+        </a>&nbsp;
+        {% endfor %}
+    </small>
     <p>{{ post.body }}</p>
 
 

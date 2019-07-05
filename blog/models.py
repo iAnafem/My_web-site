@@ -14,6 +14,7 @@ class Category(models.Model):
 class Post(models.Model):
     """Model representing a post"""
     title = models.CharField(max_length=255)
+    author = models.ForeignKey('accounts.CustomUser', on_delete=models.SET_NULL, null=True, related_name='posts')
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
@@ -31,7 +32,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     """Model representing post comments"""
-    author = models.ForeignKey('accounts.CustomUser', on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey('accounts.CustomUser', on_delete=models.SET_NULL, null=True, related_name='comments')
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     post = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='comments')
