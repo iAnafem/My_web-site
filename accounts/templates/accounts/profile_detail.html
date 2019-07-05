@@ -12,13 +12,14 @@
 {% block button %} Home page {% endblock %}
 
 {% block page_content %}
+    {% if user.avatar %}
+      <img src="{{ user.avatar.url }}" alt="Los Angeles">
+    {%  endif %}
     {{ user.first_name }}
     {{ user.last_name }}
-    {{ user.occupation }}
-    {{ user.short_biography }}
-    {{ user.location}}
-    {{ user.username }}
-    {{ user.email }}
+    {{ user.gender }}
+    {{ user.biography }}
+    {{ user.date_of_birth}}
 
 
 {% endblock %}

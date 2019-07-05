@@ -50,13 +50,11 @@ class PostDetail(FormMixin, generic.DetailView):
         return context
 
     def post(self, request, *args, **kwargs):
-        # if not request.user.is_authenticated:
-        #   return HttpResponseForbidden()
         self.object = self.get_object()
         form = self.get_form()
         if form.is_valid():
             comment = Comment(
-                author=form.cleaned_data["author"],
+                author=request.user,
                 body=form.cleaned_data["body"],
                 post=self.object
             )
@@ -72,7 +70,7 @@ class PostDetail(FormMixin, generic.DetailView):
 
 
 class CreatePostView(LoginRequiredMixin, generic.CreateView):
-    login_url = '/accounts/login/'
+    login_url = '/users/login/'
     model = Post
     # permission_required = 'catalog.can_create_posts'
     form_class = PostForm
@@ -81,14 +79,14 @@ class CreatePostView(LoginRequiredMixin, generic.CreateView):
 
 
 class UpdatePostView(LoginRequiredMixin, generic.UpdateView):
-    login_url = '/accounts/login/'
+    login_url = '/users/login/'
     model = Post
     # permission_required = 'catalog.can_create_posts'
     fields = '__all__'
 
 
 class DeletePostView(LoginRequiredMixin, generic.DeleteView):
-    login_url = '/accounts/login/'
+    login_url = '/users/login/'
     model = Post
     # permission_required = 'catalog.can_mark_returned'
     success_url = reverse_lazy('blog_index')
