@@ -7,3 +7,4 @@ venv
 *.xml
 db.sqlite3
 initial
+media
