@@ -17,9 +17,11 @@
 {% for project in project_list %}
     <div class="col-md-4">
         <div class="card mb-2">
-          <a href="{% url 'civil_project_detail' project.pk %}">
-            <img class="card-img-top" src="{{ project.main_image.url }}" alt="photo">
-          </a>
+          {%  if project.main_image %}
+            <a href="{% url 'civil_project_detail' project.pk %}">
+              <img class="card-img-top" src="{{ project.main_image.url }}" alt="photo">
+            </a>
+          {%  endif %}
             <div class="card-body">
                 <h5 class="card-title">{{ project.title }}</h5>
                 <p class="card-text">{{ project.short_description }}</p>

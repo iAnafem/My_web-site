@@ -20,13 +20,13 @@
           <div class="align-center text-center">
             {% if post.cover %}
               <a href="{% url 'post_detail' post.pk%}">
-                <img class="card-img-top " src="{{ post.cover.url}}" alt="photo" style="width: 500px">
+                <img class="card-img-top " src="{{ post.cover.url}}" alt="photo" style="width: 50%">
               </a>
             {% endif %}
             <div>
                 <small>
                   {{ post.created_on.date }} |&nbsp;
-                  Categories:&nbsp;
+                  Categories: ololo
                   {% for category in post.categories.all %}
                   <a href="{% url 'post_category' category.name %}">
                     {{ category.name }}

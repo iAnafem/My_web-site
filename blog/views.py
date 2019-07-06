@@ -72,7 +72,6 @@ class PostDetail(FormMixin, generic.DetailView):
 class CreatePostView(LoginRequiredMixin, generic.CreateView):
     login_url = '/users/login/'
     model = Post
-    # permission_required = 'catalog.can_create_posts'
     form_class = PostForm
     template_name = 'blog/create_post.html'
     success_url = reverse_lazy('blog_index')

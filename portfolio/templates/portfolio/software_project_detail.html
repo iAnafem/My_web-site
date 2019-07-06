@@ -14,9 +14,11 @@
 {% block page_content %}
   <div class="row" style="padding-top: 100px">
       <div class="col-md-3"></div>
-      <div class="col-md-6">
+      {%  if project.main_image %}
+        <div class="col-md-6">
           <img class="card-img-top" src="{{ project.main_image.url}}" alt="photo">
-      </div>
+        </div>
+      {%  endif %}
   </div>
   <div class="row" style="padding-top: 20px">
       <div class="col-md-1"></div>

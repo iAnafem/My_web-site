@@ -19,18 +19,22 @@
 {% block page_content %}
 
 <div class="col-md-12" style="padding-top: 50px">
-    {% if post.cover %}
-      <img src="{{ post.cover.url}}" alt="{{ post.title }}">
-    {% endif %}
-    <small>
-    Categories:&nbsp;
-        {% for category in post.categories.all %}
-        <a href="{% url 'post_category' category.name %}">
-            {{ category.name }}
-        </a>&nbsp;
-        {% endfor %}
-    </small>
-    <p>{{ post.body }}</p>
+     <div>
+       {% if post.cover %}
+          <img src="{{ post.cover.url}}" alt="{{ post.title }}" style="width: 30%">
+       {% endif %}
+     </div>
+     <div>
+       <small>
+         Categories:&nbsp;
+           {% for category in post.categories.all %}
+             <a href="{% url 'post_category' category.name %}">
+               {{ category.name }}
+             </a>&nbsp;
+           {% endfor %}
+       </small>
+     </div>
+     <p>{{ post.body }}</p>
 
 
       <a href="{% url 'update_post' post.pk%}">
