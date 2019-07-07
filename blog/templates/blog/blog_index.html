@@ -26,7 +26,8 @@
             <div>
                 <small>
                   {{ post.created_on.date }} |&nbsp;
-                  Categories: ololo
+                  {{ post.author }} |&nbsp;
+                  Categories:
                   {% for category in post.categories.all %}
                   <a href="{% url 'post_category' category.name %}">
                     {{ category.name }}

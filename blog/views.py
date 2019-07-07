@@ -76,6 +76,16 @@ class CreatePostView(LoginRequiredMixin, generic.CreateView):
     template_name = 'blog/create_post.html'
     success_url = reverse_lazy('blog_index')
 
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.author = request.user
+            instance.save()
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
 
 class UpdatePostView(LoginRequiredMixin, generic.UpdateView):
     login_url = '/users/login/'

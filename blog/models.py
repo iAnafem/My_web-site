@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.conf import settings
 
 
 class Category(models.Model):
@@ -14,7 +15,7 @@ class Category(models.Model):
 class Post(models.Model):
     """Model representing a post"""
     title = models.CharField(max_length=255)
-    author = models.ForeignKey('accounts.CustomUser', on_delete=models.SET_NULL, null=True, related_name='posts')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
