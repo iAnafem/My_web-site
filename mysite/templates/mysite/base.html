@@ -51,17 +51,17 @@
               <a class="nav-link" href="{% url 'profile_detail' user.pk %}">{{ user }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'account_logout' %}?next={{request.path}}" >Log out</a>
+                <a class="nav-link" href="{% url 'account_logout' %}?next={{request.path}}" >Sign out</a>
             </li>
           {% else %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'account_signup' %}?next={{request.path}}" >Sign up </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'account_login' %}?next={{request.path}}" >Log in </a>
+                <a class="nav-link" href="{% url 'account_login' %}?next={{request.path}}" >Sign in </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% provider_login_url 'google' %}?next={{request.path}}" >Log in with Gmail</a>
+                <a class="nav-link" href="{% provider_login_url 'google' %}?next={{request.path}}" >Sign in with Gmail</a>
             </li>
           {% endif %}
         </ul>

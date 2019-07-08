@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'zo4vb95th*g*krij^le(cq2uc_4w$#8s24a59d_j2v=wng1n_f'
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'zo4vb95th*g*krij^le(cq2uc_4w$#8s24a59d_j2v=wng1n_f')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '60$6uug*$%df7)p+2i8g+ll+ar50)(rx0q=rxna^75vwdav$g)')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
@@ -173,8 +173,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'mysite/static'),
 ]
 
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', 'AKIAZB33OBUJL3YKJLHL')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', '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')
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', 'AKIAIOSFODNN7EXAMPLE')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY')
 AWS_STORAGE_BUCKET_NAME = 'ianafem-media'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
