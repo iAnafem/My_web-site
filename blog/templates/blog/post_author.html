@@ -2,11 +2,11 @@
 
 {% load static %}
 
-{% block title %} {{ category | title }} {% endblock %}
+{% block title %} {{ author }} {% endblock %}
 
-{% block main_header %} {{ category | title }}  {% endblock %}
+{% block main_header %} {{ author }} {% endblock %}
 
-{% block secondary_header %} All posts of this category {% endblock %}
+{% block secondary_header %} All posts created by this author {% endblock %}
 
 {% block button-href %} /blog/ {% endblock %}
 {% block button %} All posts {% endblock %}
@@ -20,9 +20,7 @@
         {% endif %}
         <div>
         <small>
-            Created by
-            <a href="{% url 'post_author' post.author%}">{{ post.author.username }}</a>
-            | {{ post.created_on.date }}, {{ post.created_on.time }}
+            {{ post.created_on.date }}, {{ post.created_on.time }} |&nbsp;&nbsp;
             Categories:&nbsp;
             {% for category in post.categories.all %}
             <a href="{% url 'post_category' category.name %}">

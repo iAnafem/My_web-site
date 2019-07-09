@@ -6,6 +6,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import FormMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from accounts.models import CustomUser
 
 
 class BlogIndex(generic.ListView):
@@ -29,6 +30,23 @@ class PostCategory(generic.ListView):
         context = super().get_context_data(**kwargs)
         # Add in the publisher
         context['category'] = self.categories
+        return context
+
+
+class PostAuthor(generic.ListView):
+    template_name = "blog/post_author.html"
+
+    def get_queryset(self):
+        author_id = CustomUser.objects.filter(username=self.kwargs['author']).values('id')[0]['id']
+        return Post.objects.filter(author=author_id).order_by(
+            '-created_on'
+        )
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in the publisher
+        context['author'] = self.kwargs['author']
         return context
 
 
@@ -64,8 +82,6 @@ class PostDetail(FormMixin, generic.DetailView):
             return self.form_invalid(form)
 
     def form_valid(self, form):
-        # Here, we would record the user's interest using the message
-        # passed in form.cleaned_data['message']
         return super().form_valid(form)
 
 
@@ -101,41 +117,17 @@ class DeletePostView(LoginRequiredMixin, generic.DeleteView):
     success_url = reverse_lazy('blog_index')
 
 
-"""
-class PostDisplay(generic.DetailView):
-    model = Post
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['form'] = CommentForm()
-        return context
-
-    def get_object(self, queryset=None):
-        obj = super().get_object()
-        return obj
+class UpdateCommentView(LoginRequiredMixin, generic.UpdateView):
+    login_url = '/users/login/'
+    model = Comment
+    # permission_required = 'catalog.can_create_posts'
+    fields = ('body', )
 
 
-class CommentPost(generic.detail.SingleObjectMixin, generic.FormView):
-    template_name = 'blog/post_detail.html'
-    form_class = CommentForm
-    model = Post
-
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        return super().post(request, *args, **kwargs)
+class DeleteCommentView(LoginRequiredMixin, generic.DeleteView):
+    login_url = '/users/login/'
+    model = Comment
+    # permission_required = 'catalog.can_mark_returned'
 
     def get_success_url(self):
         return reverse('post_detail', kwargs={'pk': self.object.pk})
-
-
-class PostDetail(View):
-    model = Post
-
-    def get(self, request, *args, **kwargs):
-        view = PostDisplay.as_view()
-        return view(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        view = CommentPost.as_view()
-        return view(request, *args, **kwargs)
-"""

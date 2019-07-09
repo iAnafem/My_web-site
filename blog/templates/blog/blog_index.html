@@ -25,8 +25,8 @@
             {% endif %}
             <div>
                 <small>
-                  {{ post.created_on.date }} |&nbsp;
-                  {{ post.author }} |&nbsp;
+                  {{ post.created_on.date }}, {{ post.created_on.time }} |&nbsp;
+                  <a href="{% url 'post_author' post.author%}">{{ post.author }} </a> |&nbsp;
                   Categories:
                   {% for category in post.categories.all %}
                   <a href="{% url 'post_category' category.name %}">

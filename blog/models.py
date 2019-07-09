@@ -35,5 +35,9 @@ class Comment(models.Model):
     """Model representing post comments"""
     author = models.ForeignKey('accounts.CustomUser', on_delete=models.SET_NULL, null=True, related_name='comments')
     body = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
     post = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='comments')
+
+    def get_absolute_url(self):
+        """Returns the url to access a particular post instance."""
+        return reverse('post_detail', args=[self.post_id])
