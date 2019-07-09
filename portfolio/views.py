@@ -1,5 +1,7 @@
 from django.views import generic
-from .models import Project
+from .models import Project, ProjectImages
+from django.views.generic.edit import FormView
+from .forms import ProjectForm
 
 
 class SoftwareProjectsListView(generic.ListView):
@@ -22,3 +24,26 @@ class CivilEngineeringProjectsListView(generic.ListView):
 class CivilEngineeringProjectDetailView(generic.DetailView):
     model = Project
     template_name = 'portfolio/civil_project_detail.html'
+
+
+class ProjectCreateView(FormView):
+    form_class = ProjectForm
+    template_name = 'portfolio/project_create.html'
+    success_url = '/'
+
+    def post(self, request, *args, **kwargs):
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        files = request.FILES.getlist('file_field')
+        if form.is_valid():
+            for f in files:
+                ProjectImages.objects.create(
+                    project=self,
+                    image=f,
+                )
+            instance = form.save(commit=False)
+            instance.save()
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+

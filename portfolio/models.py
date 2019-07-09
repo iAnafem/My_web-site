@@ -16,7 +16,7 @@ class Project(models.Model):
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
     short_description = models.TextField()
     technologies = models.CharField(max_length=500)
-    main_image = models.FileField(upload_to='images/', null=True, blank=True)
+    main_image = models.FileField(upload_to='images/portfolio/', null=True, blank=True)
     full_description = models.TextField()
 
     def __str__(self):
@@ -32,12 +32,13 @@ class Comment(models.Model):
     post = models.ForeignKey('Project', on_delete=models.CASCADE)
 
 
-def set_main_img(query, name):
-    """This method sets the main images to projects"""
-    for i, project in enumerate(query.filter(category__name__contains=name)):
-        p = project
-        p.main_image = f'portfolio/img/{name}_project{str(i)}.jpg'
-        p.save()
+class ProjectImages(models.Model):
+    """Model representing images for project full description"""
+    project = models.ForeignKey('Project', on_delete=models.CASCADE)
+    image = models.FileField(upload_to='images/portfolio/', null=True, blank=True)
 
+    def __str__(self):
+        """String for representing the Model object (in Admin site etc.)"""
+        return self.project.title + ".content." + str(self.id)
 
 
