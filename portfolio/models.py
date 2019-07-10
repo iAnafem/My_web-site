@@ -39,6 +39,6 @@ class ProjectImages(models.Model):
 
     def __str__(self):
         """String for representing the Model object (in Admin site etc.)"""
-        return self.project.title + ".content." + str(self.id)
+        return str(self.project) + ".content_image." + str(self.id)
 
 
