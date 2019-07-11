@@ -4,8 +4,7 @@ from .models import Post, Comment, Category
 from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import FormMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin
 from accounts.models import CustomUser
 
 
@@ -28,7 +27,7 @@ class PostCategory(generic.ListView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
-        # Add in the publisher
+        # Add in the category
         context['category'] = self.categories
         return context
 
@@ -45,7 +44,7 @@ class PostAuthor(generic.ListView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
-        # Add in the publisher
+        # Add in the author
         context['author'] = self.kwargs['author']
         return context
 
@@ -103,31 +102,39 @@ class CreatePostView(LoginRequiredMixin, generic.CreateView):
             return self.form_invalid(form)
 
 
-class UpdatePostView(LoginRequiredMixin, generic.UpdateView):
+class CheckUpdatePermissions(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     login_url = '/users/login/'
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.author == self.request.user
+
+
+class CheckDeletePermissions(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    login_url = '/users/login/'
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.author == self.request.user
+
+
+class UpdatePostView(CheckUpdatePermissions):
     model = Post
-    # permission_required = 'catalog.can_create_posts'
     fields = '__all__'
 
 
-class DeletePostView(LoginRequiredMixin, generic.DeleteView):
-    login_url = '/users/login/'
+class DeletePostView(CheckDeletePermissions):
     model = Post
-    # permission_required = 'catalog.can_mark_returned'
     success_url = reverse_lazy('blog_index')
 
 
-class UpdateCommentView(LoginRequiredMixin, generic.UpdateView):
-    login_url = '/users/login/'
+class UpdateCommentView(UpdatePostView):
     model = Comment
-    # permission_required = 'catalog.can_create_posts'
     fields = ('body', )
 
 
-class DeleteCommentView(LoginRequiredMixin, generic.DeleteView):
-    login_url = '/users/login/'
+class DeleteCommentView(CheckDeletePermissions):
     model = Comment
-    # permission_required = 'catalog.can_mark_returned'
 
     def get_success_url(self):
-        return reverse('post_detail', kwargs={'pk': self.object.pk})
+        return reverse('post_detail', kwargs={'pk': self.object.post.pk})

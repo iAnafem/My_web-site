@@ -2,7 +2,8 @@ from django.views import generic
 from .models import Project, ProjectImages
 from django.views.generic.edit import FormView
 from .forms import ProjectForm
-from django import forms
+from django.contrib.auth.mixins import PermissionRequiredMixin
+
 
 class SoftwareProjectsListView(generic.ListView):
     model = Project
@@ -26,17 +27,12 @@ class CivilEngineeringProjectDetailView(generic.DetailView):
     template_name = 'portfolio/civil_project_detail.html'
 
 
-class ProjectCreateView(FormView):
+class ProjectCreateView(PermissionRequiredMixin, FormView):
     model = Project
     form_class = ProjectForm
+    permission_required = 'portfolio.project.can_add_project'
     template_name = 'portfolio/project_create.html'
-    success_url = '/'
-
-    """
-    from portfolio.models import ProjectImages
-    ProjectImages.objects.all().delete()
-    
-    """
+    success_url = '../civil-engineering/'
 
     def post(self, request, *args, **kwargs):
         form_class = self.get_form_class()
