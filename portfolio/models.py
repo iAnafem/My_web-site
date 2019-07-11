@@ -46,7 +46,7 @@ class ProjectComment(models.Model):
 
 class ProjectImages(models.Model):
     """Model representing images for project full description"""
-    project = models.ForeignKey('Project', on_delete=models.CASCADE, null=True)
+    project = models.ForeignKey('Project', on_delete=models.CASCADE, null=True, related_name='content_images')
     image = models.FileField(upload_to='images/portfolio/', null=True, blank=True)
 
     def __str__(self):

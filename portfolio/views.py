@@ -18,6 +18,9 @@ class ProjectDetail(FormMixin, generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = self.get_form()
+        context['count'] = ""
+        for i in range(1, len(self.get_object().content_images.all())):
+            context['count'] += str(i)
         return context
 
     def post(self, request, *args, **kwargs):
@@ -36,6 +39,22 @@ class ProjectDetail(FormMixin, generic.DetailView):
 
     def form_valid(self, form):
         return super().form_valid(form)
+
+
+class UpdateProjectView(generic.UpdateView):
+    model = Project
+    fields = '__all__'
+
+
+class DeleteProjectView(generic.DeleteView):
+    model = Project
+
+    def get_success_url(self):
+        """Returns the url to access a particular post instance."""
+        if Project.category.name.startswith('Soft'):
+            return reverse('software_project_list')
+        else:
+            return reverse('civil_project_list')
 
 
 class SoftwareProjectsListView(generic.ListView):
