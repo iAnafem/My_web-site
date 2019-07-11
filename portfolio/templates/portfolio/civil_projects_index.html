@@ -14,7 +14,7 @@
 {% block page_content %}
 
 {% if user.is_superuser %}
-    <a href="{% url 'project_create' %}?next={{request.path}}">
+    <a href="{% url 'project_create' %}">
        <button type="button" class="btn btn-dark btn-lg">
            Create new project
        </button>

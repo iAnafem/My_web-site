@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -24,12 +25,23 @@ class Project(models.Model):
         return self.title
 
 
-class Comment(models.Model):
-    """Model representing comments to projects"""
-    author = models.CharField(max_length=60)
+class ProjectComment(models.Model):
+    """Model representing post comments"""
+    author = models.ForeignKey(
+        'accounts.CustomUser',
+        on_delete=models.SET_NULL,
+        null=True, related_name='project_author',
+    )
     body = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)
-    post = models.ForeignKey('Project', on_delete=models.CASCADE)
+    last_modified = models.DateTimeField(auto_now=True)
+    project = models.ForeignKey('Project', on_delete=models.CASCADE, related_name='project_comments')
+
+    def get_absolute_url(self):
+        """Returns the url to access a particular post instance."""
+        if self.project.category.name.startswith('Soft'):
+            return reverse('software_project_detail', args=[self.project_id])
+        else:
+            return reverse('civil_project_detail', args=[self.project_id])
 
 
 class ProjectImages(models.Model):
