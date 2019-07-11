@@ -27,7 +27,28 @@
           <p>{{ project.full_description|safe }}</p>
       </div>
   </div>
+<h3>Leave a comment:</h3>
+      {% if user.is_authenticated %}
+        <form action="/portfolio/software-development/{{ project.pk }}/" method="post" style="width: 50%; ">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.body }}
+            </div>
+            <button type="submit" class="btn btn-dark" >Submit</button>
+        </form>
+      {% else %}
+          <p> You must be
+              <a href="{% url 'account_login' %}?next={{request.path}}"> logged in </a>
+              to post comments here
+          </p>
+      {% endif %}
+    <h3>Comments:</h3>
+    {% for comment in project.project_comments.all %}
+      <p>
+        On {{comment.last_modified.date }}&nbsp;{{comment.last_modified.time }}
+        <b>{{ comment.author }}</b> wrote:
+      </p>
+      <p>{{ comment.body }}</p>
 
-
-
+    {% endfor %}
 {% endblock %}
