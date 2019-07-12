@@ -53,6 +53,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'account_logout' %}?next={{request.path}}" >Sign out</a>
             </li>
+            {% if user.is_superuser %}
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/" >ADMIN</a>
+              </li>
+            {% endif %}
           {% else %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'account_signup' %}?next={{request.path}}" >Sign up </a>
@@ -81,13 +86,13 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/infopages/resume/">RESUME</a>
+            <a class="nav-link" href="{% url 'resume_index' %}">RESUME</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'blog_index' %}">BLOG</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/infopages/contact/">CONTACT</a>
+            <a class="nav-link" href="{% url 'contact_index' %}">CONTACT</a>
           </li>
         </ul>
       </div>

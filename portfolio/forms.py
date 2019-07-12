@@ -39,14 +39,15 @@ class ProjectForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
             "class": "form-control",
             "placeholder": "Enter the names of the technologies used"
-        })
+        }),
     )
 
     full_description = forms.CharField(
         widget=forms.Textarea(attrs={
             "class": "form-control",
             "placeholder": "Enter a full description"
-        })
+        }),
+        required=False,
     )
 
     class Meta:

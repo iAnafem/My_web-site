@@ -42,29 +42,6 @@ class ProjectDetail(FormMixin, generic.DetailView):
         return super().form_valid(form)
 
 
-class ProjectUpdateView(generic.UpdateView):
-    model = Project
-    fields = '__all__'
-
-    def get_success_url(self):
-        """Returns the url to access a particular post instance."""
-        if self.get_object().category.name.startswith('Soft'):
-            return reverse('software_project_detail', kwargs={'pk': self.object.pk})
-        else:
-            return reverse('civil_project_detail', kwargs={'pk': self.object.pk})
-
-
-class ProjectDeleteView(generic.DeleteView):
-    model = Project
-
-    def get_success_url(self):
-        """Returns the url to access a particular post instance."""
-        if self.get_object().category.name.startswith('Soft'):
-            return reverse('software_projects_list')
-        else:
-            return reverse('civil_projects_list')
-
-
 class SoftwareProjectsListView(generic.ListView):
     model = Project
     queryset = Project.objects.filter(category__name="Software development")
@@ -121,6 +98,31 @@ class ProjectCreateView(PermissionRequiredMixin, FormView):
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
+
+
+class ProjectUpdateView(PermissionRequiredMixin, generic.UpdateView):
+    model = Project
+    permission_required = 'portfolio.project.can_change_project'
+    fields = '__all__'
+
+    def get_success_url(self):
+        """Returns the url to access a particular post instance."""
+        if self.get_object().category.name.startswith('Soft'):
+            return reverse('software_project_detail', kwargs={'pk': self.object.pk})
+        else:
+            return reverse('civil_project_detail', kwargs={'pk': self.object.pk})
+
+
+class ProjectDeleteView(PermissionRequiredMixin, generic.DeleteView):
+    model = Project
+    permission_required = 'portfolio.project.can_delete_project'
+
+    def get_success_url(self):
+        """Returns the url to access a particular post instance."""
+        if self.get_object().category.name.startswith('Soft'):
+            return reverse('software_projects_list')
+        else:
+            return reverse('civil_projects_list')
 
 
 class UpdateProjectCommentView(CheckUpdatePermissions):

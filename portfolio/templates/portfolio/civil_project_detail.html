@@ -69,7 +69,7 @@
   </div>
   <div>
     {% if user.is_superuser %}
-       <a href="{% url 'civil_project_update' project.pk%}">
+       <a href="{% url 'project_update' project.pk%}">
          <button type="submit" class="btn btn-dark" >Update</button>
        </a>
        <!-- Button to Open the Modal -->
@@ -96,7 +96,7 @@
 
         <!-- Modal footer -->
         <div class="modal-footer">
-          <form action="{% url 'civil_project_delete' project.pk%}" method="POST">
+          <form action="{% url 'project_delete' project.pk%}" method="POST">
           {% csrf_token %}
             <input type="submit" class="btn btn-danger" value="Yes, delete.">
           </form>
