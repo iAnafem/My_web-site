@@ -128,7 +128,7 @@ class DeletePostView(CheckDeletePermissions):
     success_url = reverse_lazy('blog_index')
 
 
-class UpdateCommentView(UpdatePostView):
+class UpdateCommentView(CheckUpdatePermissions):
     model = Comment
     fields = ('body', )
 

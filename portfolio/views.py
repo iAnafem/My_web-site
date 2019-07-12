@@ -5,6 +5,7 @@ from .forms import ProjectForm, CommentForm
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic.edit import FormMixin
 from django.urls import reverse
+from blog.views import CheckDeletePermissions, CheckUpdatePermissions
 
 
 class ProjectDetail(FormMixin, generic.DetailView):
@@ -41,20 +42,27 @@ class ProjectDetail(FormMixin, generic.DetailView):
         return super().form_valid(form)
 
 
-class UpdateProjectView(generic.UpdateView):
+class ProjectUpdateView(generic.UpdateView):
     model = Project
     fields = '__all__'
 
+    def get_success_url(self):
+        """Returns the url to access a particular post instance."""
+        if self.get_object().category.name.startswith('Soft'):
+            return reverse('software_project_detail', kwargs={'pk': self.object.pk})
+        else:
+            return reverse('civil_project_detail', kwargs={'pk': self.object.pk})
 
-class DeleteProjectView(generic.DeleteView):
+
+class ProjectDeleteView(generic.DeleteView):
     model = Project
 
     def get_success_url(self):
         """Returns the url to access a particular post instance."""
-        if Project.category.name.startswith('Soft'):
-            return reverse('software_project_list')
+        if self.get_object().category.name.startswith('Soft'):
+            return reverse('software_projects_list')
         else:
-            return reverse('civil_project_list')
+            return reverse('civil_projects_list')
 
 
 class SoftwareProjectsListView(generic.ListView):
@@ -114,3 +122,18 @@ class ProjectCreateView(PermissionRequiredMixin, FormView):
         else:
             return self.form_invalid(form)
 
+
+class UpdateProjectCommentView(CheckUpdatePermissions):
+    model = ProjectComment
+    fields = ('body', )
+
+
+class DeleteProjectCommentView(CheckDeletePermissions):
+    model = ProjectComment
+
+    def get_success_url(self):
+        """Returns the url to access a particular project instance."""
+        if self.get_object().project.category.name.startswith('Soft'):
+            return reverse('software_project_detail', kwargs={'pk': self.object.project.pk})
+        else:
+            return reverse('civil_project_detail', kwargs={'pk': self.object.project.pk})

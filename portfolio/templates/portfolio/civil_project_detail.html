@@ -69,7 +69,7 @@
   </div>
   <div>
     {% if user.is_superuser %}
-       <a href="{% url 'civil_project_detail' project.pk%}">
+       <a href="{% url 'civil_project_update' project.pk%}">
          <button type="submit" class="btn btn-dark" >Update</button>
        </a>
        <!-- Button to Open the Modal -->
@@ -96,7 +96,7 @@
 
         <!-- Modal footer -->
         <div class="modal-footer">
-          <form action="{% url 'civil_project_detail' project.pk%}?next={{request.path}}" method="POST">
+          <form action="{% url 'civil_project_delete' project.pk%}" method="POST">
           {% csrf_token %}
             <input type="submit" class="btn btn-danger" value="Yes, delete.">
           </form>
@@ -126,5 +126,42 @@
         <b>{{ comment.author }}</b> wrote:
       </p>
       <p>{{ comment.body }}</p>
+      {% if user.is_authenticated and comment.author == user %}
+        <a href="{% url 'update_project_comment' comment.pk %}?next={{request.path}}">
+         <button type="submit" class="btn btn-dark" >Update</button>
+        </a>
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#myModa2{{ comment.pk }}">
+          Delete
+        </button>
+           <!-- The Modal -->
+          <div class="modal fade" id="myModa2{{ comment.pk }}">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Delete Comment </h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <p>Are you sure you want to delete this comment?</p>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <form action="{% url 'delete_project_comment' comment.pk %}?next={{request.path}}" method="POST">
+                  {% csrf_token %}
+                    <input type="submit" class="btn btn-danger" value="Yes, delete.">
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+      {% endif %}
+      <hr>
     {% endfor %}
+
 {% endblock %}
