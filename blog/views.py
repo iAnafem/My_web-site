@@ -91,6 +91,7 @@ class CreatePostView(LoginRequiredMixin, generic.CreateView):
     template_name = 'blog/create_post.html'
     success_url = reverse_lazy('blog_index')
 
+
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         if form.is_valid():
