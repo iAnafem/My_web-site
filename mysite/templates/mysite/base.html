@@ -1,42 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>{% block title %}{% endblock %}</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    {% load static %}
-    {% load socialaccount %}
-  </head>
-  <body>
-    <div class='tour-step-background'
-         style="
-              background-image: url('{% static 'homepage/img/back13.jpg'%}');
-              color:white;
-              padding-top:120px;
-              padding-bottom:20px;">
-      <div class='header text-center'>
-        <div class="container">
-          <h1>{% block main_header %}{% endblock %}</h1>
-          <h4 style="font-style: oblique; color: #cccccc ">{% block secondary_header %}{% endblock %}</h4>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
+        {% load socialaccount %}
+    </head>
+    <body>
+        <div id="hat"
+             style="background-image: url('{% static 'base/images/back13.jpg' %}')">
+            <div class="container">
+                <div class="row header_row">
+                    <div class="col-lg-1 col_header"></div>
+                    <div class="col-lg-10">
+                        <div id='main_header'>
+                            <h1>
+                                {% block main_header %}{% endblock %}
+                            </h1>
+                        </div>
+                        <div id='secondary_header'>
+                            <h4>
+                                {% block secondary_header %}{% endblock %}
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-10">
+                        <div id="hat_button">
+                            <a href="/infopages/contact/">
+                              <button type="button" class="btn btn-light btn-lg">
+                                  Contact me today!
+                              </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-          <div class="container" style="padding: 20px">
-
-            <a href="{% block button-href %}/infopages/contact/{% endblock %}">
-              <button type="button" class="btn btn-light btn-lg" style="color: black">
-                {% block button %} Contact me today! {% endblock %}
-              </button>
-            </a>
-
-          </div>
-      </div>
-    </div>
 
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top"
-         style="background-image: url('{% static 'homepage/img/back13.jpg'%}')">
+         style="background-image: url('{% static 'homepage/img/../../static/base/images/back13.jpg' %}')">
       <!-- Brand/logo -->
       <a class="navbar-brand" href="{% url 'home_page_index' %} ">
         <img src="{% static 'bird.jpg' %}" alt="logo" class="rounded-circle" style="width:80px;">
@@ -99,7 +110,7 @@
     </nav>
 
   {% block carousel %}{% endblock %}
-  <div class='tour-step-background' style="background-color: whitesmoke">
+  <div class='tour-step-background'>
     <div class="container-fluid" style="padding-left: 100px; padding-right: 100px; padding-bottom: 50px">
       {% block page_content %}{% endblock %}
       {% block text_field %}{% endblock %}
@@ -114,7 +125,7 @@
 
   <div class="footer fixed bottom align-center text-center"
        style="
-       background-image: url('{% static 'homepage/img/back13.jpg' %}');
+       background-image: url('{% static 'homepage/img/../../static/base/images/back13.jpg' %}');
        padding: 10px;
        width: 100%;
        color: #fff;">

@@ -1,0 +1,36 @@
+body {
+    background-color: whitesmoke;
+}
+
+#hat {
+    height: 400px;
+    color: white;
+}
+
+#main_header {
+    margin: 100px 20px 20px 20px;
+    text-align: center;
+}
+
+#secondary_header {
+    margin: 20px;
+    text-align: center;
+    font-style: oblique;
+    color: #cccccc;
+}
+.header_row {
+    height: 320px
+}
+.button_row {
+    height: 80px;
+    margin: 20px;
+}
+
+#hat_button {
+    margin-bottom: 20px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: black;
+}

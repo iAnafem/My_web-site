@@ -142,9 +142,6 @@ SITE_ID = 1
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# previous STATIC_URL = '/static/'
-
-# previous STATICFILES_DIRS = (os.path.join(CURRENT_PATH, 'static'),)
 
 
 # Heroku: Update database configuration from $DATABASE_URL.
@@ -169,9 +166,6 @@ ACCOUNT_USERNAME_REQUIRED = False
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'mysite/static'),
-]
 
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', 'AKIAIOSFODNN7EXAMPLE')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY')
@@ -183,7 +177,14 @@ AWS_S3_OBJECT_PARAMETERS = {
 }
 
 AWS_LOCATION = 'static'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+# STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, 'mysite/static'),
+# ]
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (os.path.join(CURRENT_PATH, 'static'),)
 
 DEFAULT_FILE_STORAGE = 'mysite.storage_backends.MediaStorage'
