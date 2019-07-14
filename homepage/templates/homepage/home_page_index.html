@@ -29,7 +29,9 @@
             {% if project.category.name == "Software development" %}
               <div class="card mb-2">
                 <a class="btn btn-dark" href="{% url 'software_project_detail' project.pk %}">
-                  <img class="card-img-top " src="{{ project.main_image.url}}" alt="photo">
+                  {% if project.main_image %}
+                    <img class="card-img-top " src="{{ project.main_image.url}}" alt="photo">
+                  {% endif %}
                 </a>
                 <div class="card-body">
                   <h5 class="card-title">{{ project.title }}</h5>
