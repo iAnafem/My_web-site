@@ -1,149 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>{% block title %}{% endblock %}</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        {% load static %}
-        <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
-        {% load socialaccount %}
-    </head>
-    <body>
-        <div id="hat"
-             style="background-image: url('{% static 'base/images/back13.jpg' %}')">
-            <div class="container">
-                <div class="row header_row">
-                    <div class="col-lg-1 col_header"></div>
-                    <div class="col-lg-10">
-                        <div id='main_header'>
-                            <h1>
-                                {% block main_header %}{% endblock %}
-                            </h1>
-                        </div>
-                        <div id='secondary_header'>
-                            <h4>
-                                {% block secondary_header %}{% endblock %}
-                            </h4>
-                        </div>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
+    {% load socialaccount %}
+</head>
+<body>
+    <div id="hat"
+         style="background-image: url('{% static 'base/images/back13.jpg' %}')">
+        <div class="container hatHeader">
+            <div class="row header_row">
+                <div class="col-lg-1 col_header"></div>
+                <div class="col-lg-10">
+                    <div id='main_header'>
+                        <h1>
+                            {% block main_header %}{% endblock %}
+                        </h1>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-10">
-                        <div id="hat_button">
-                            <a href="/infopages/contact/">
-                              <button type="button" class="btn btn-light btn-lg">
-                                  Contact me today!
-                              </button>
-                            </a>
-                        </div>
+                    <div id='secondary_header'>
+                        <h4>
+                            {% block secondary_header %}{% endblock %}
+                        </h4>
                     </div>
                 </div>
             </div>
+            <div class="hatButton">
+                <a href="/infopages/contact/">
+                    <button type="button" class="btn btn-light btn-lg">
+                        {% block button %}Contact me today!{% endblock %}
+                    </button>
+                </a>
+            </div>
+
+
         </div>
+    </div>
 
     <nav class="navbar navbar-expand-sm navbar-dark fixed-top"
-         style="background-image: url('{% static 'homepage/img/../../static/base/images/back13.jpg' %}')">
-      <!-- Brand/logo -->
-      <a class="navbar-brand" href="{% url 'home_page_index' %} ">
-        <img src="{% static 'bird.jpg' %}" alt="logo" class="rounded-circle" style="width:80px;">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="collapsibleNavbar" style="text-align: right">
-        <ul class="navbar-nav mr-auto" style="padding-top: 10px">
-          {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'profile_detail' user.pk %}">{{ user }}</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'account_logout' %}?next={{request.path}}" >Sign out</a>
-            </li>
-            {% if user.is_superuser %}
-              <li class="nav-item">
-                <a class="nav-link" href="/admin/" >ADMIN</a>
-              </li>
-            {% endif %}
-          {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'account_signup' %}?next={{request.path}}" >Sign up </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'account_login' %}?next={{request.path}}" >Sign in </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% provider_login_url 'google' %}?next={{request.path}}" >Sign in with Gmail</a>
-            </li>
-          {% endif %}
-        </ul>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'home_page_index' %}" >HOME</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'about_index' %}">ABOUT</a>
-          </li>
-          <!-- Dropdown -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">PORTFOLIO</a>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="{% url 'software_projects_list' %}">Software development</a>
-              <a class="dropdown-item" href="{% url 'civil_projects_list' %}">Civil engineering</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'resume_index' %}">RESUME</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'blog_index' %}">BLOG</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'contact_index' %}">CONTACT</a>
-          </li>
-        </ul>
-      </div>
+         style="background-image: url('{% static 'base/images/back13.jpg' %}')">
+        <!-- Brand/logo -->
+        <a class="navbar-brand" href="{% url 'home_page_index' %} ">
+            <img src="{% static 'base/images/bird.jpg' %}" alt="logo" class="rounded-circle myClass">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav mr-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile_detail' user.pk %}">{{ user }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_logout' %}?next={{request.path}}" >Sign out</a>
+                    </li>
+                    {% if user.is_superuser %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/" >ADMIN</a>
+                        </li>
+                    {% endif %}
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_signup' %}?next={{request.path}}">
+                            Sign up
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_login' %}?next={{request.path}}">
+                            Sign in
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% provider_login_url 'google' %}?next={{request.path}}">
+                            Sign in with Gmail
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home_page_index' %}">
+                        HOME
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about_index' %}">
+                        ABOUT
+                    </a>
+                </li>
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        PORTFOLIO
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{% url 'software_projects_list' %}">
+                            Software development
+                        </a>
+                        <a class="dropdown-item" href="{% url 'civil_projects_list' %}">
+                            Civil engineering
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'resume_index' %}">
+                        RESUME
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blog_index' %}">
+                        BLOG
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contact_index' %}">
+                        CONTACT
+                    </a>
+                </li>
+            </ul>
+        </div>
     </nav>
 
-  {% block carousel %}{% endblock %}
-  <div class='tour-step-background'>
-    <div class="container-fluid" style="padding-left: 100px; padding-right: 100px; padding-bottom: 50px">
-      {% block page_content %}{% endblock %}
-      {% block text_field %}{% endblock %}
-      {% block content %}{% endblock %}
-      {% block content1 %}{% endblock %}
-      {% block content2 %}{% endblock %}
-      {% block content3 %}{% endblock %}
+    <div class="container-fluid">
+        <div class="row page_content">
+            <div class="col-lg-12">
+                {% block carousel %}{% endblock %}
+                {% block page_content %}{% endblock %}
+                {% block text_field %}{% endblock %}
+                {% block content %}{% endblock %}
+                {% block content1 %}{% endblock %}
+                {% block content2 %}{% endblock %}
+                {% block content3 %}{% endblock %}
+            </div>
+        </div>
     </div>
-  </div>
 
-
-
-  <div class="footer fixed bottom align-center text-center"
-       style="
-       background-image: url('{% static 'homepage/img/../../static/base/images/back13.jpg' %}');
-       padding: 10px;
-       width: 100%;
-       color: #fff;">
-
-    <h4>Contacts</h4>
-    <p><strong>Phone:</strong> +7-917-539-61-53</p>
-    <p><strong>Email:</strong> sidviciouc@gmail.com</p>
-    <div>
-      <a href="https://vk.com/id1629644">
-        <img src="{% static 'homepage/img/VK.png' %}" alt="" style="width: 70px; padding: 10px">
-      </a>
-      <a href="https://www.facebook.com/profile.php?id=100005183502722">
-        <img src="{% static 'homepage/img/FB.jpg' %}" alt="" style="width: 68px; padding: 10px">
-      </a>
-      <a href="https://github.com/iAnafem">
-        <img src="{% static 'homepage/img/GH1.png' %}" alt="" style="width: 75px; padding: 15px 10px 10px;">
-      </a>
+    <div class="footer fixed bottom align-center text-center"
+         style="background-image: url('{% static 'base/images/back13.jpg' %}');">
+        <div class="footer-content">
+            <h4>Contacts</h4>
+            <p><strong>Phone:</strong> +7-917-539-61-53</p>
+            <p><strong>Email:</strong> sidviciouc@gmail.com</p>
+            <div>
+                <a href="https://vk.com/id1629644">
+                    <img id="vk" src="{% static 'homepage/img/VK.png' %}" alt="">
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=100005183502722">
+                    <img id="fb" src="{% static 'homepage/img/FB.jpg' %}" alt="">
+                </a>
+                <a href="https://github.com/iAnafem">
+                    <img id="gh" src="{% static 'homepage/img/GH1.png' %}" alt="">
+                </a>
+            </div>
+            <p id="created">Created by iAnafem</p>
+        </div>
     </div>
-  </div>
-  </body>
+</body>
 </html>

@@ -9,118 +9,163 @@
 {% block secondary_header %} {{ project.short_description }} {% endblock %}
 
 {% block button-href %} /portfolio/software-development/ {% endblock %}
-{% block button %} All projects {% endblock %}
+
+{% block button %} {{ project.category }} projects {% endblock %}
 
 {% block page_content %}
-  <div class="row" style="padding-top: 100px">
-      <div class="col-md-3"></div>
-      {%  if project.main_image %}
-        <div class="col-md-6">
-          <img class="card-img-top" src="{{ project.main_image.url}}" alt="photo">
-        </div>
-      {%  endif %}
-  </div>
-  <div class="row" style="padding-top: 20px">
-      <div class="col-md-1"></div>
-      <div class="col-md-10">
-          <h6>{{ project.technologies }}</h6>
-          <p>{{ project.full_description|safe }}</p>
-      </div>
-  </div>
-<div>
-    {% if user.is_superuser %}
-       <a href="{% url 'project_update' project.pk%}">
-         <button type="submit" class="btn btn-dark" >Update</button>
-       </a>
-       <!-- Button to Open the Modal -->
-       <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#myModal">
-         Delete
-       </button>
-    {% endif %}
-  </div>
-  <!-- The Modal -->
-  <div class="modal fade" id="myModal">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
 
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Delete Project </h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
+<link rel="stylesheet" href="{% static 'portfolio/css/soft_detail.css' %}">
 
-        <!-- Modal body -->
-        <div class="modal-body">
-          <p>Are you sure you want to delete the project: {{ project.title }}?</p>
-        </div>
 
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <form action="{% url 'project_delete' project.pk%}" method="POST">
-          {% csrf_token %}
-            <input type="submit" class="btn btn-danger" value="Yes, delete.">
-          </form>
+<div class="row fullDescript">
+    <div class="row">
+        <div class="col-md-12">
+            <h6>Technologies: {{ project.technologies }}</h6>
+            <hr>
         </div>
-      </div>
     </div>
-  </div>
-  <h3>Leave a comment:</h3>
-      {% if user.is_authenticated %}
-        <form action="/portfolio/software-development/{{ project.pk }}/" method="post" style="width: 50%; ">
-            {% csrf_token %}
-            <div class="form-group">
-                {{ form.body }}
+    {% if project.content_images %}
+        <div class="row">
+            <div class="col-md-9">
+                <p>{{ project.full_description|safe }}</p>
             </div>
-            <button type="submit" class="btn btn-dark" >Submit</button>
-        </form>
-      {% else %}
-          <p> You must be
-              <a href="{% url 'account_login' %}?next={{request.path}}"> logged in </a>
-              to post comments here
-          </p>
-      {% endif %}
-    <h3>Comments:</h3>
-    {% for comment in project.project_comments.all %}
-      <p>
-        On {{comment.last_modified.date }}&nbsp;{{comment.last_modified.time }}
-        <b>{{ comment.author }}</b> wrote:
-      </p>
-      <p>{{ comment.body }}</p>
-      {% if user.is_authenticated and comment.author == user %}
-        <a href="{% url 'update_project_comment' comment.pk %}?next={{request.path}}">
-         <button type="submit" class="btn btn-dark" >Update</button>
-        </a>
-        <!-- Button to Open the Modal -->
-        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#myModa2{{ comment.pk }}">
-          Delete
-        </button>
-           <!-- The Modal -->
-          <div class="modal fade" id="myModa2{{ comment.pk }}">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
+            <div class="col-md-3">
+                {% for set in project.content_images.all %}
+                    <div>
+                        <img class="card-img-top float-right" src="{{ set.image.url }}" alt="photo">
+                        <h5>{{ set.description }}</h5>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <div class="row">
+            <div class="col-md-9">
+                <p>{{ project.full_description|safe }}</p>
+            </div>
+        </div>
+    {% endif %}
+    <div class="row" id="buttons">
+        <div class="col-md-12">
+            {% if user.is_superuser %}
+                <a href="{% url 'project_update' project.pk%}">
+                    <button type="submit" class="btn btn-dark" >Update</button>
+                </a>
+                <!-- Button to Open the Modal -->
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#myModal">
+                    Delete
+                </button>
+            {% endif %}
+        </div>
+    </div>
+</div>
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                  <h4 class="modal-title">Delete Comment </h4>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
 
-                <!-- Modal body -->
-                <div class="modal-body">
-                  <p>Are you sure you want to delete this comment? {{ comment.pk }}</p>
-                </div>
+            <!-- Modal Header -->
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                  <form action="{% url 'delete_project_comment' comment.pk %}?next={{request.path}}" method="POST">
-                  {% csrf_token %}
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Project </h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+
+            <div class="modal-body">
+                <p>Are you sure you want to delete the project: {{ project.title }}?</p>
+            </div>
+
+            <!-- Modal footer -->
+
+            <div class="modal-footer">
+                <form action="{% url 'project_delete' project.pk%}" method="POST">
+                    {% csrf_token %}
                     <input type="submit" class="btn btn-danger" value="Yes, delete.">
-                  </form>
-                </div>
-              </div>
+                </form>
             </div>
-          </div>
-      {% endif %}
-      <hr>
-    {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+<div class="row commentForm">
+    <div class="col-md-12">
+        <h3>Leave a comment:</h3>
+
+        {% if user.is_authenticated %}
+            <form action="/portfolio/software-development/{{ project.pk }}/" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.body }}
+                </div>
+                <button type="submit" class="btn btn-dark" >Submit</button>
+            </form>
+        {% else %}
+            <p> You must be
+                <a href="{% url 'account_login' %}?next={{request.path}}"> logged in </a>
+                to post comments here
+            </p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row comments">
+    <div class="col-md-12">
+        <h3>Comments:</h3>
+        <hr>
+        {% for comment in project.project_comments.all %}
+            <p>
+                On {{comment.last_modified.date }}&nbsp;{{comment.last_modified.time }}
+                <b>{{ comment.author }}</b> wrote:
+            </p>
+            <p>{{ comment.body }}</p>
+            {% if user.is_authenticated and comment.author == user %}
+                <a href="{% url 'update_project_comment' comment.pk %}?next={{request.path}}">
+                    <button type="submit" class="btn btn-dark" >Update</button>
+                </a>
+
+                <!-- Button to Open the Modal -->
+
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#myModa2{{ comment.pk }}">
+                    Delete
+                </button>
+            {% endif %}
+
+            <!-- The Modal -->
+
+            <div class="modal fade" id="myModa2{{ comment.pk }}">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+
+                        <div class="modal-header">
+                            <h4 class="modal-title">Delete Comment </h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete this comment? {{ comment.pk }}</p>
+                        </div>
+
+                        <!-- Modal footer -->
+
+                        <div class="modal-footer">
+                            <form action="{% url 'delete_project_comment' comment.pk %}?next={{request.path}}" method="POST">
+                                {% csrf_token %}
+                                <input type="submit" class="btn btn-danger" value="Yes, delete.">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
