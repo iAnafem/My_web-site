@@ -18,7 +18,8 @@ class Project(models.Model):
     short_description = models.TextField()
     technologies = models.CharField(max_length=500)
     main_image = models.FileField(upload_to='images/portfolio/', null=True, blank=True)
-    full_description = models.TextField(null=True, blank=True)
+    full_description = models.TextField(max_length=2500, null=True, blank=True)
+    full_description_2 = models.TextField(blank=True, default='')
 
     def __str__(self):
         """String for representing the Model object (in Admin site etc.)"""
@@ -48,7 +49,7 @@ class ProjectImages(models.Model):
     """Model representing images for project full description"""
     project = models.ForeignKey('Project', on_delete=models.CASCADE, null=True, related_name='content_images')
     image = models.FileField(upload_to='images/portfolio/', null=True, blank=True)
-    description = models.TextField(null=True, blank=True)
+    description = models.TextField(blank=True, default='')
 
     def __str__(self):
         """String for representing the Model object (in Admin site etc.)"""

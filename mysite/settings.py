@@ -185,7 +185,7 @@ STATICFILES_DIRS = [
 
 
 # STATIC_URL = '/static/'
-
+#
 # STATICFILES_DIRS = (os.path.join(CURRENT_PATH, 'static'),)
 
 DEFAULT_FILE_STORAGE = 'mysite.storage_backends.MediaStorage'
