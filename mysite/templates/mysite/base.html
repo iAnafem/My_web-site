@@ -9,13 +9,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'base/css/base2.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
     {% load socialaccount %}
 </head>
 <body>
     <div id="hat"
          style="background-image: url('{% static 'base/images/back13.jpg' %}')">
-        <div class="container">
+        <div class="container hatHeader">
             <div class="row header_row">
                 <div class="col-lg-1 col_header"></div>
                 <div class="col-lg-10">
@@ -31,18 +31,15 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-10">
-                    <div id="hat_button">
-                        <a href="/infopages/contact/">
-                            <button type="button" class="btn btn-light btn-lg">
-                                Contact me today!
-                            </button>
-                        </a>
-                    </div>
-                </div>
+            <div class="hatButton">
+                <a href="/infopages/contact/">
+                    <button type="button" class="btn btn-light btn-lg">
+                        {% block button %}Contact me today!{% endblock %}
+                    </button>
+                </a>
             </div>
+
+
         </div>
     </div>
 
