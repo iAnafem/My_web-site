@@ -1,7 +1,7 @@
 from django.views import generic
 from .models import Project, ProjectImages, ProjectComment
 from django.views.generic.edit import FormView
-from .forms import ProjectForm, CommentForm
+from .forms import ProjectForm, CommentForm, UpdateProjectForm
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic.edit import FormMixin
 from django.urls import reverse
@@ -103,7 +103,13 @@ class ProjectCreateView(PermissionRequiredMixin, FormView):
 class ProjectUpdateView(PermissionRequiredMixin, generic.UpdateView):
     model = Project
     permission_required = 'portfolio.project.can_change_project'
-    fields = '__all__'
+    form_class = UpdateProjectForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = self.get_form()
+        context['content_images'] = ProjectImages.objects.filter(project=self.object.pk)
+        return context
 
     def get_success_url(self):
         """Returns the url to access a particular post instance."""

@@ -18,7 +18,7 @@ class Project(models.Model):
     short_description = models.TextField()
     technologies = models.CharField(max_length=500)
     main_image = models.FileField(upload_to='images/portfolio/', null=True, blank=True)
-    full_description = models.TextField(max_length=2500, null=True, blank=True)
+    full_description = models.TextField(max_length=2500, blank=True, default='')
     full_description_2 = models.TextField(blank=True, default='')
 
     def __str__(self):

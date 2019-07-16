@@ -1,0 +1,29 @@
+.resTable {
+    margin-top: 2%;
+    text-align: justify;
+}
+
+.resHeader {
+    text-align: center;
+    font-style: oblique;
+    font-family: Inconsolata;
+}
+
+.resContent {
+    margin-left: 4%;
+    margin-top: 0.5%
+}
+
+.resContent img {
+    width:49%;
+    background: #f0f0f0;
+    border: 2px solid #666;
+    margin-top: 5px
+
+}
+
+.myButton {
+    margin: 3% 2% 2% 2%;
+    color: white;
+    text-align: center;
+}

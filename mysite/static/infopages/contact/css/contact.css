@@ -1,0 +1,10 @@
+.card {
+    max-width: 500px;
+    background: #f0f0f0;
+    border: 2px solid #666;
+    margin: 0 auto;
+}
+
+.card img {
+    width: 100%
+}
