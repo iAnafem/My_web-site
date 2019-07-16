@@ -35,7 +35,6 @@ class ProjectForm(forms.ModelForm):
     )
 
     technologies = forms.CharField(
-        max_length=60,
         widget=forms.TextInput(attrs={
             "class": "form-control",
             "placeholder": "Enter the names of the technologies used"
@@ -43,6 +42,15 @@ class ProjectForm(forms.ModelForm):
     )
 
     full_description = forms.CharField(
+        max_length=2500,
+        widget=forms.Textarea(attrs={
+            "class": "form-control",
+            "placeholder": "Enter a full description"
+        }),
+        required=False,
+    )
+
+    full_description_2 = forms.CharField(
         widget=forms.Textarea(attrs={
             "class": "form-control",
             "placeholder": "Enter a full description"
@@ -54,3 +62,6 @@ class ProjectForm(forms.ModelForm):
         model = Project
         fields = '__all__'
 
+
+class UpdateProjectForm(ProjectForm):
+    pass
