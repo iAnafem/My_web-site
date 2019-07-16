@@ -12,39 +12,41 @@
 {% block button %} Home page {% endblock %}
 
 {% block page_content %}
-<div class="container" style="padding-right: 100px">
-  <div class="row" style="padding-top: 50px">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-      <div class="card" style="width:400px; background: #f0f0f0; border: 2px solid #666;">
-        <img class="card-img-top" src="{% static 'infopages/contact/img/avatar.png' %}" alt="Card image" style="width:100%">
-        <div class="card-body">
-          <h4 class="card-title"></h4>
-          <div class="card-text text-center">
-              <h4>Reach out to me directly if you so please</h4>
-            <p>
-              <strong>First name:</strong>&nbsp;&nbsp;&nbsp;&nbsp; Dmitriy
-            </p>
-            <p>
-              <strong>Last name:</strong>&nbsp;&nbsp;&nbsp;&nbsp; Pronkin
-            </p>
-            <p>
-              <strong>Phone:</strong>&nbsp;&nbsp;&nbsp;&nbsp; {{flatpage.myflatpage.content2|safe }}
-            </p>
-            <p>
-              <strong>Email:</strong>&nbsp;&nbsp;&nbsp;&nbsp; {{flatpage.myflatpage.content3|safe }}
-            </p>
-            <p>
-              <strong>GitHub:</strong>&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://github.com/iAnafem">iAnafem</a>
-            </p>
-            <p>You can also email me via <a href="{{flatpage.myflatpage.content|safe }}">VKontakte</a>
-              or <a href="{{flatpage.myflatpage.content1|safe }}">Facebook</a>
-            </p>
-          </div>
+
+    <link rel="stylesheet" href="{% static 'infopages/contact/css/contact.css' %}">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <img class="card-img-top" src="{% static 'infopages/contact/img/avatar.png' %}" alt="">
+                    <div class="card-body">
+                        <h4 class="card-title"></h4>
+                        <div class="card-text text-center">
+                            <h4>Reach out to me directly if you so please</h4>
+                            <p>
+                                <strong>First name:</strong>&nbsp;&nbsp;&nbsp;&nbsp; Dmitriy
+                            </p>
+                            <p>
+                                <strong>Last name:</strong>&nbsp;&nbsp;&nbsp;&nbsp; Pronkin
+                            </p>
+                            <p>
+                                <strong>Phone:</strong>&nbsp;&nbsp;&nbsp;&nbsp; {{ flatpage.myflatpage.content2|safe }}
+                            </p>
+                            <p>
+                                <strong>Email:</strong>&nbsp;&nbsp;&nbsp;&nbsp; {{ flatpage.myflatpage.content3|safe }}
+                            </p>
+                            <p>
+                                <strong>GitHub:</strong>&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://github.com/iAnafem">iAnafem</a>
+                            </p>
+                            <p>You can also email me via <a href="{{ flatpage.myflatpage.content|safe }}">VKontakte</a>
+                                or <a href="{{ flatpage.myflatpage.content1|safe }}">Facebook</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
 {% endblock %}
 

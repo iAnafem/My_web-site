@@ -12,53 +12,36 @@
 {% block button %} About me {% endblock %}
 
 {% block content %}
-<div style="background-color: whitesmoke">
-    <div class="container" style="max-width: 1500px; padding-top: 80px;">
-      <table class="table-sm table-borderless">
-        <thead>
 
-          <!-- 1 row -->
-          <tr>
-            <th class="w-25 text-center" style="text-align: center;font-style: oblique; font-family: Inconsolata">
+    <link rel="stylesheet" href="{% static 'infopages/resume/css/resume.css' %}">
+
+    <div class="container-fluid resume">
+        <div class="row resTable">
+            <div class="col-md-1 "></div>
+            <div class="col-md-4  resHeader">
                 <h2><strong>Technologies</strong></h2>
-            </th>
-            <th class="w-25 text-center">
-                <h5><strong>Day-to-day Comfort</strong></h5>
-            </th>
-            <th class="w-25 text-center">
-                <h5><strong>Experienced with</strong></h5>
-            </th>
-          </tr>
-        </thead>
-        <tbody class="align-top">
-
-          <!-- 2 row -->
-          <tr>
-            <td></td>
-            <td class="w-20 text-left" style="padding-left: 18vmin;">
-                {{flatpage.myflatpage.content|safe }}
-            </td>
-            <td class="w-20 text-left" style="padding-left: 18vmin;;">
-                {{flatpage.myflatpage.content1|safe }}
-            </td>
-          </tr>
-
-          <!-- 3 row -->
-          <tr>
-            <td class="w-25 text-center" style="text-align: center;font-style: oblique;padding-top: 50px; font-family: Inconsolata">
-              <h2><strong>Languages</strong></h2>
-            </td>
-            <td colspan="2" class="w-20 text-left" style="padding-left: 18vmin;padding-top: 50px;">
-                {{flatpage.myflatpage.content2|safe }}
-            </td>
-          </tr>
-
-          <!-- 4 row -->
-          <tr>
-            <td class="w-25 text-center" style="text-align: center;font-style: oblique;padding-top: 50px; font-family: Inconsolata">
-              <h2><strong>Education</strong></h2>
-            </td>
-            <td colspan="2" class="w-20 text-left" style="padding-left: 18vmin;padding-top: 50px;">
+            </div>
+            <div class="col-md-2  resContent">
+                {{ flatpage.myflatpage.content|safe }}
+            </div>
+            <div class="col-md-5 "></div>
+        </div>
+        <div class="row resTable">
+            <div class="col-md-1 "></div>
+            <div class="col-md-4  resHeader">
+                <h2><strong>Languages</strong></h2>
+            </div>
+            <div class="col-md-6  resContent">
+                {{ flatpage.myflatpage.content2|safe }}
+            </div>
+            <div class="col-md-1 "></div>
+        </div>
+        <div class="row resTable">
+            <div class="col-md-1 "></div>
+            <div class="col-md-4  resHeader">
+                <h2><strong>Education</strong></h2>
+            </div>
+            <div class="col-md-6  resContent">
                 <p><strong>
                     Education:
                 </strong>
@@ -84,16 +67,15 @@
                 </strong>
                     &nbsp;&nbsp;&nbsp;&nbsp;Railway Engineer
                 </p>
-            </td>
-          </tr>
-
-          <!-- 5 row -->
-          <tr>
-            <td class="w-25 text-center"
-                style="text-align: center;font-style: oblique;padding-top: 50px; font-family: Inconsolata">
-              <h2><strong>Work Experience</strong></h2>
-            </td>
-            <td colspan="2" class="w-20 text-left" style="padding-left: 18vmin;padding-top: 50px;">
+            </div>
+            <div class="col-md-1 "></div>
+        </div>
+        <div class="row resTable">
+            <div class="col-md-1 "></div>
+            <div class="col-md-4  resHeader">
+                <h2><strong>Work experience</strong></h2>
+            </div>
+            <div class="col-md-6  resContent">
                 <h6>
                     <strong>
                         LEAD ENGINEER
@@ -102,7 +84,7 @@
                 <br>
                 <p>
                     <strong>
-                      ООО ИЦ МИТ (Engineering Center "Bridges and Tunnels"),
+                        ООО ИЦ МИТ (Engineering Center "Bridges and Tunnels"),
                     </strong>
                     Moscow, September 2012 &nbsp;-&nbsp;Present
                 </p>
@@ -113,7 +95,8 @@
                     desire to somehow automate the routine processes that abound in design. From that moment on,
                     I began to discover the fascinating world of computer programming.
                     My main tool was Python. I wrote several useful
-                    <a href="{% url 'software_project_detail' pk=2 %}">scripts</a> that my colleagues are actively using,
+                    <a href="{% url 'software_project_detail' pk=2 %}">scripts</a> that my colleagues are actively
+                    using,
                     wrote a <a href="{% url 'software_project_detail' pk=1 %}">program for working with AutoCAD</a>,
                     which you can see in my <a href="{% url 'software_projects_list' %}">portfolio</a>.
                     In this organization, I participated in the creation of a large
@@ -131,14 +114,15 @@
                 <br>
                 <p>
                     <strong>
-                      НПО МОСТОВИК,
+                        НПО МОСТОВИК,
                     </strong>
                     Moscow, December 2009 &nbsp;-&nbsp;September 2012
                 </p>
                 <p>
                     My real path in engineering began in this organization. I participated in the creation of
                     dozens of large structures, including the
-                    <a href="{% url 'civil_project_detail' pk=5 %}">Bridge to the Russky Island</a> (city of Vladivostok)
+                    <a href="{% url 'civil_project_detail' pk=5 %}">Bridge to the Russky Island</a> (city of
+                    Vladivostok)
                     and Olympic facilities, which were built as part of Russia's preparation for the Olympics in Sochi.
                     Here I learned to think in a complex way, to work for the result and to accomplish the set
                     tasks within the tight deadlines.
@@ -153,7 +137,7 @@
                 <br>
                 <p>
                     <strong>
-                      ЗАО ТРАНСМОСТОСТРОЙ,
+                        ЗАО ТРАНСМОСТОСТРОЙ,
                     </strong>
                     Moscow, February 2008 &nbsp;-&nbsp;January 2009
                 </p>
@@ -165,74 +149,51 @@
                     main elements of the supporting structures of
                     pedestrian and road bridges, as well as honed my skills in AutoCAD.
                 </p>
-            </td>
-          </tr>
-
-          <!-- 6 row -->
-          <tr stule="max-width: 100%">
-            <td class="w-25 text-center"
-                style="text-align: center;font-style: oblique;font-family: Inconsolata; padding-top: 50px">
-              <h2><strong>Certificates</strong></h2>
-            </td>
-            <td class="w-20 text-center" style="padding-top: 50px;">
+            </div>
+            <div class="col-md-1 "></div>
+        </div>
+        <div class="row resTable">
+            <div class="col-md-1 "></div>
+            <div class="col-md-4  resHeader">
+                <h2><strong>Certificates</strong></h2>
+            </div>
+            <div class="col-md-6  resContent">
                 <a href="{% static 'infopages/resume/img/CSC_alg_1.png' %}">
-                    <img src="{% static 'infopages/resume/img/CSC_alg_1.png' %}" alt=""
-                         style="width:400px; background: #f0f0f0; border: 2px solid #666;">
+                    <img src="{% static 'infopages/resume/img/CSC_alg_1.png' %}" alt="">
                 </a>
-                <br>
-                <br>
-                <a href="{% static 'infopages/resume/img/BI_python_1.png' %}">
-                    <img src="{% static 'infopages/resume/img/BI_python_1.png' %}" alt=""
-                         style="width:400px; background: #f0f0f0; border: 2px solid #666;">
-                </a>
-                <br>
-                <br>
-                <a href="{% static 'infopages/resume/img/DB_sert.png' %}">
-                    <img src="{% static 'infopages/resume/img/DB_sert.png' %}" alt=""
-                         style="width:400px; background: #f0f0f0; border: 2px solid #666;">
-                </a>
-                <br>
-                <br>
-                <a href="{% static 'infopages/resume/img/MAIL_web.png' %}">
-                    <img src="{% static 'infopages/resume/img/MAIL_web.png' %}" alt=""
-                         style="width:400px; background: #f0f0f0; border: 2px solid #666;">
-                </a>
-            </td>
-            <td class="w-20 text-center" style="padding-top: 50px;">
                 <a href="{% static 'infopages/resume/img/CSC_alg_2.png' %}">
-                    <img src="{% static 'infopages/resume/img/CSC_alg_2.png' %}" alt=""
-                         style="width:400px; background: #f0f0f0; border: 2px solid #666;">
+                    <img src="{% static 'infopages/resume/img/CSC_alg_2.png' %}" alt="">
                 </a>
-                <br>
-                <br>
+                <a href="{% static 'infopages/resume/img/BI_python_1.png' %}">
+                    <img src="{% static 'infopages/resume/img/BI_python_1.png' %}" alt="">
+                </a>
                 <a href="{% static 'infopages/resume/img/BI_python_2.png' %}">
-                    <img src="{% static 'infopages/resume/img/BI_python_2.png' %}" alt=""
-                         style="width:400px; background: #f0f0f0; border: 2px solid #666;">
+                    <img src="{% static 'infopages/resume/img/BI_python_2.png' %}" alt="">
                 </a>
-                <br>
-                <br>
+                <a href="{% static 'infopages/resume/img/DB_sert.png' %}">
+                    <img src="{% static 'infopages/resume/img/DB_sert.png' %}" alt="">
+                </a>
                 <a href="{% static 'infopages/resume/img/JS.png' %}">
-                    <img src="{% static 'infopages/resume/img/JS.png' %}" alt=""
-                         style="width:400px; background: #f0f0f0; border: 2px solid #666;">
+                    <img src="{% static 'infopages/resume/img/JS.png' %}" alt="">
                 </a>
-                <br>
-                <br>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                <a href="{% static 'infopages/resume/img/MAIL_web.png' %}">
+                    <img src="{% static 'infopages/resume/img/MAIL_web.png' %}" alt="">
+                </a>
+
+            </div>
+            <div class="col-md-1 "></div>
+        </div>
+
+        <div class="row myButton">
+            <div class="col-md-12">
+                <a href="/portfolio/software-development/">
+                    <button type="button" class="btn btn-dark btn-lg">
+                        My software development projects
+                    </button>
+                </a>
+            </div>
+        </div>
     </div>
-
-
-  <div class="container text-center" style=" padding-top: 50px;">
-      <a href="/infopages/contact/">
-        <button type="button" class="btn btn-dark btn-lg" style="color: white">
-          Contact me today!
-        </button>
-      </a>
-  </div>
-</div>
-
 
 
 {% endblock %}
