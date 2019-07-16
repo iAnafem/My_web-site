@@ -6,42 +6,117 @@
 
 {% block main_header %} My software development projects {% endblock %}
 
-{% block secondary_header %} My first steps in a computer programming {% endblock %}
+{% block secondary_header %} My first steps in computer programming {% endblock %}
 
 {% block button-href %} /portfolio/civil-engineering/ {% endblock %}
 {% block button %} My civil engineering projects {% endblock %}
 
 {% block page_content %}
 
-{% if user.is_superuser %}
-    <a href="{% url 'project_create' %}">
-       <button type="button" class="btn btn-dark btn-lg">
-           Create new project
-       </button>
-    </a>
-{% endif %}
+    <link rel="stylesheet" href="{% static 'portfolio/css/soft_index.css' %}">
 
-<h1>Projects</h1>
-<div class="row">
-{% for project in project_list %}
-    <div class="col-md-4">
-        <div class="card mb-2">
-          {%  if project.main_image %}
-            <a href="{% url 'software_project_detail' project.pk %}">
-              <img class="card-img-top" src="{{ project.main_image.url}}" alt="photo">
+    {% if user.is_superuser %}
+        <div class="createButton">
+            <a href="{% url 'project_create' %}">
+                <button type="button" class="btn btn-dark btn-lg">
+                    + create new project
+                </button>
             </a>
-          {%  endif %}
-            <div class="card-body">
-                <h5 class="card-title">{{ project.title }}</h5>
-                <p class="card-text">{{ project.short_description }}</p>
-                <a href="{% url 'software_project_detail' project.pk %}"
-                   class="btn btn-dark">
-                    Read More
-                </a>
-            </div>
+        </div>
+    {% endif %}
+
+    <h5 class="softHeader">Check out my major software development projects and write a few comments
+        if you'd like. Your feedback is really helpful to me!
+    </h5>
+
+    <div class="row project">
+        <div class="col-md-12">
+            {% for card in cards %}
+                <div class="card-deck">
+                {% for project in card %}
+                    <div class="card mb-2">
+                        <a href="{% url 'software_project_detail' project.pk %}">
+                            {% if project.main_image %}
+                                <img class="card-img-top" src="{{ project.main_image.url }}" alt="photo">
+                            {% endif %}
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <p class="card-text">
+                                Technologies: {{ project.technologies }}
+                            </p>
+                            <p class="card-text">
+                                {{ project.short_description }}
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-dark" href="{% url 'software_project_detail' project.pk %}">
+                                Read More
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            {% endfor %}
+
+            {% if last_card %}
+                {% if last_card|length_is:2 %}
+                    <div class="card-deck twoCards">
+                        {% for project in last_card %}
+                            <div class="card mb-2">
+                                <a href="{% url 'software_project_detail' project.pk %}">
+                                    {% if project.main_image %}
+                                        <img class="card-img-top" src="{{ project.main_image.url }}" alt="photo">
+                                    {% endif %}
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ project.title }}</h5>
+                                    <p class="card-text">
+                                        Technologies: {{ project.technologies }}
+                                    </p>
+                                    <p class="card-text">
+                                        {{ project.short_description }}
+                                    </p>
+                                </div>
+                                <div class="card-footer">
+                                    <a class="btn btn-dark" href="{% url 'software_project_detail' project.pk %}">
+                                        Read More
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="card-deck oneCard">
+                    {% for project in last_card %}
+                        <div class="card mb-2">
+                            <a href="{% url 'software_project_detail' project.pk %}">
+                                {% if project.main_image %}
+                                    <img class="card-img-top" src="{{ project.main_image.url }}" alt="photo">
+                                {% endif %}
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ project.title }}</h5>
+                                <p class="card-text">
+                                    Technologies: {{ project.technologies }}
+                                </p>
+                                <p class="card-text">
+                                    {{ project.short_description }}
+                                </p>
+                            </div>
+                            <div class="card-footer">
+                                <a class="btn btn-dark" href="{% url 'software_project_detail' project.pk %}">
+                                    Read More
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            {% endif %}
         </div>
     </div>
-    {% endfor %}
-</div>
 
 {% endblock %}
+
+

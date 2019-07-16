@@ -44,8 +44,17 @@ class ProjectDetail(FormMixin, generic.DetailView):
 
 class SoftwareProjectsListView(generic.ListView):
     model = Project
-    queryset = Project.objects.filter(category__name="Software development")
     template_name = 'portfolio/software_projects_index.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        queryset = Project.objects.filter(category__name="Software development")
+        count = len(queryset)
+        context['cards'] = list()
+        for i in range(0, count - count % 3, 3):
+            context['cards'].append(queryset[i:i + 3])
+        context['last_card'] = queryset[(count - count % 3):count]
+        return context
 
 
 class SoftwareProjectDetailView(ProjectDetail):
@@ -57,8 +66,17 @@ class SoftwareProjectDetailView(ProjectDetail):
 
 class CivilEngineeringProjectsListView(generic.ListView):
     model = Project
-    queryset = Project.objects.filter(category__name="Civil engineering")
     template_name = 'portfolio/civil_projects_index.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        queryset = Project.objects.filter(category__name="Civil engineering")
+        count = len(queryset)
+        context['cards'] = list()
+        for i in range(0, count - count % 3, 3):
+            context['cards'].append(queryset[i:i + 3])
+        context['last_card'] = queryset[(count - count % 3):count]
+        return context
 
 
 class CivilEngineeringProjectDetailView(ProjectDetail):

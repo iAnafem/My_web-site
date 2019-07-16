@@ -1,0 +1,34 @@
+.createButton {
+    text-align: center;
+}
+
+.softHeader {
+    text-align: center;
+    margin: 2%;
+}
+
+.project {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.card-deck {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 20vw;
+    object-fit: cover;
+}
+
+.twoCards {
+    margin-left: 16%;
+    margin-right: 16%;
+}
+
+.oneCard {
+    margin-left: 33%;
+    margin-right: 33%;
+}
