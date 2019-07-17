@@ -12,7 +12,7 @@ class CommentForm(forms.Form):
 
     class Meta:
         model = ProjectComment
-        fields = ('author', 'text',)
+        fields = ('body',)
 
 
 class ProjectForm(forms.ModelForm):
@@ -60,8 +60,18 @@ class ProjectForm(forms.ModelForm):
 
     class Meta:
         model = Project
-        fields = '__all__'
+        exclude = ('content_images',)
 
 
 class UpdateProjectForm(ProjectForm):
-    pass
+    model = Project
+    exclude = ('content_images',)
+
+
+class UpdateCommentForm(CommentForm, forms.ModelForm):
+    body = forms.CharField(widget=forms.Textarea(
+        attrs={
+            "class": "form-control",
+            "placeholder": "Leave a comment!"
+        })
+    )

@@ -2,23 +2,27 @@
 
 {% block title %} Create post {% endblock %}
 
+{% load static %}
+
 {% block main_header %} Create post {% endblock %}
 
 {% block secondary_header %}  {% endblock %}
 
-{% block button-href %} /blog/ {% endblock %}
-{% block button %} All posts {% endblock %}
+{% block button-href %}{{request.META.HTTP_REFERER}}{% endblock %}
+
+{% block button %} Go back {% endblock %}
 
 {% block page_content %}
 
-<div style="padding-top: 50px">
-  <form method="post" enctype="multipart/form-data" style="vertical-align: text-top">
-    {% csrf_token %}
+    <link rel="stylesheet" href="{% static 'portfolio/css/project_form.css' %}">
 
-      {{ form.as_p }}
+    <form class="row1" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
 
-    <button type="submit" class="btn btn-dark">Submit New Post</button>
-  </form>
-</div>
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-dark">Submit New Project</button>
+    </form>
+
 
 {% endblock %}

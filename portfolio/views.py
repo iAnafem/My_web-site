@@ -151,7 +151,7 @@ class ProjectDeleteView(PermissionRequiredMixin, generic.DeleteView):
 
 class UpdateProjectCommentView(CheckUpdatePermissions):
     model = ProjectComment
-    fields = ('body', )
+    form_class = CommentForm
 
 
 class DeleteProjectCommentView(CheckDeletePermissions):

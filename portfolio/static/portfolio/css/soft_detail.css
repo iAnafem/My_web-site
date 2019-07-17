@@ -32,3 +32,13 @@
 .comments {
     margin: 3% 6% 1% 6%;
 }
+
+.mainImg {
+    width: 33%;
+    height: 15vw;
+    object-fit: cover;
+    display:block;
+    margin-right: 2%;
+    background: #f0f0f0;
+    border: 2px solid #666;
+}

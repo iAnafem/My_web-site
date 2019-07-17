@@ -4,7 +4,7 @@ from .models import Post, Comment, Category
 from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import FormMixin
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from accounts.models import CustomUser
 
 
@@ -90,7 +90,6 @@ class CreatePostView(LoginRequiredMixin, generic.CreateView):
     form_class = PostForm
     template_name = 'blog/create_post.html'
     success_url = reverse_lazy('blog_index')
-
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()

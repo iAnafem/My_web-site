@@ -26,13 +26,21 @@
         {% if project.content_images.all %}
             <div class="row">
                 <div class="col-md-9">
-                    <p>{{ project.full_description|safe }}{{ project.full_description_2|safe }}</p>
+                    <a href="{{ project.main_image.url }}">
+                        <img class="mainImg float-left" src="{{ project.main_image.url }}" alt="photo">
+                    </a>
+                    <p>
+                        {{ project.full_description|safe }}
+                        {{ project.full_description_2|safe }}
+                    </p>
                 </div>
                 <div class="col-md-3">
                     {% for set in project.content_images.all %}
                         <div>
-                            <img class="card-img-top float-right" src="{{ set.image.url }}" alt="photo">
-                            <h5>{{ set.description }}</h5>
+                            <a href="{{ set.image.url }}">
+                                <img class="card-img-top float-right" src="{{ set.image.url }}" alt="photo">
+                            </a>
+                            <p>{{ set.description }}</p>
                         </div>
                     {% endfor %}
                 </div>
