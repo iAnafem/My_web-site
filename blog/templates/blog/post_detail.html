@@ -24,14 +24,22 @@
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <h6>Last modified:{{ post.last_modified.date }}, {{ post.last_modified.time }}</h6>
+                <h6>Categories:
+                    {% for category in post.categories.all %}
+                        <a href="{% url 'post_category' category.name %}">
+                            {{ category.name }}
+                        </a>&nbsp;
+                    {% endfor %}
+                </h6>
                 <hr>
                 {% if post.cover %}
                     <a href="{{ post.cover.url }}" class="lightview">
                         <img class="mainImg float-right" src="{{ post.cover.url }}" alt="photo">
                     </a>
                 {% endif %}
-                <p>{{ post.body|safe }}</p>
+                <p>{{ post.body|safe }}</p><br>
+                <h6>Last modified:{{ post.last_modified.date }}, {{ post.last_modified.time }}</h6>
+                <hr>
             </div>
             <div class="col-md-2"></div>
         </div>

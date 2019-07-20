@@ -29,15 +29,15 @@
                     {% endif %}
                     <div>
                         <small class="info">
-                            <p>Created: {{ post.created_on.date }}, {{ post.created_on.time }}</p>
-                            <p>Last modified: {{ post.last_modified.date }}, {{ post.last_modified.time }}</p>
-                            <p>Created by: <a href="{% url 'post_author' post.author %}">{{ post.author }} </a>|&nbsp;
-                                Categories:
-                                {% for category in post.categories.all %}
-                                    <a href="{% url 'post_category' category.name %}">
-                                        {{ category.name }}
-                                    </a>&nbsp;</p>
-                                {% endfor %}
+                            Created: {{ post.created_on.date }}, {{ post.created_on.time }}<br>
+                            Last modified: {{ post.last_modified.date }}, {{ post.last_modified.time }}<br>
+                            Created by: <a href="{% url 'post_author' post.author %}">{{ post.author }}</a><br>
+                            Categories:
+                            {% for category in post.categories.all %}
+                                <a href="{% url 'post_category' category.name %}">
+                                    {{ category.name }}
+                                </a>&nbsp;
+                            {% endfor %}
                         </small>
                         <a href="{% url 'post_detail' post.pk %}">
                             <h4>{{ post.title }}</h4>
