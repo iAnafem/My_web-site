@@ -1,0 +1,33 @@
+.postDetail {
+    margin: 2%;
+    text-align: justify;
+    text-indent: 20px;
+}
+
+.postDetail h6{
+    font-style: oblique;
+    float:left;
+}
+
+#buttons {
+
+    text-align: left;
+    text-indent: 0;
+}
+
+
+.mainImg {
+    width: 40%;
+    height: 20vw;
+    object-fit: cover;
+    display:block;
+    margin-left: 2%;
+    background: #f0f0f0;
+    border: 2px solid #666;
+}
+
+
+.commentForm {
+    margin-top: 3%;
+    margin-bottom: 3%
+}
