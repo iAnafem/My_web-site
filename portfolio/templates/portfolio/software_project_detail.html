@@ -26,7 +26,7 @@
         {% if project.content_images.all %}
             <div class="row">
                 <div class="col-md-9">
-                    <a href="{{ project.main_image.url }}">
+                    <a href="{{ project.main_image.url }}" class="lightview">
                         <img class="mainImg float-left" src="{{ project.main_image.url }}" alt="photo">
                     </a>
                     <p>
@@ -37,7 +37,7 @@
                 <div class="col-md-3">
                     {% for set in project.content_images.all %}
                         <div>
-                            <a href="{{ set.image.url }}">
+                            <a href="{{ set.image.url }}" class="lightview">
                                 <img class="card-img-top float-right" src="{{ set.image.url }}" alt="photo">
                             </a>
                             <p>{{ set.description }}</p>
@@ -48,6 +48,9 @@
         {% else %}
             <div class="row">
                 <div class="col-md-12">
+                    <a href="{{ project.main_image.url }}" class="lightview">
+                        <img class="mainImg float-left" src="{{ project.main_image.url }}" alt="photo">
+                    </a>
                     <p>{{ project.full_description|safe }} {{ project.full_description_2|safe }}</p>
                 </div>
             </div>
