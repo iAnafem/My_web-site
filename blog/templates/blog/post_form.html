@@ -1,20 +1,27 @@
 {% extends "base.html" %}
 
+{%  load static %}
+
 {% block title %} Update post {% endblock %}
 
 {% block main_header %} Update post: {{ post.title }} {% endblock %}
 
 {% block secondary_header %} {{ post.author }} {% endblock %}
 
-{% block button-href %} /blog/ {% endblock %}
-{% block button %} All posts {% endblock %}
+{% block button-href %}{{ request.META.HTTP_REFERER }}{% endblock %}
+
+{% block button %} Go back {% endblock %}
 
 {% block page_content %}
-  <form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <table>
-    {{ form.as_table }}
-    </table>
-    <input type="submit" class="btn btn-dark " value="Submit">
-  </form>
+
+    <link rel="stylesheet" href="{% static 'blog/css/post_form.css' %}">
+
+    <form class="row1" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <input type="submit" class="btn btn-dark " value="Submit">
+    </form>
+
 {% endblock %}

@@ -15,35 +15,38 @@
 {% block button %} Create new post {% endblock %}
 
 {% block page_content %}
-<link rel="stylesheet" href="{% static 'blog/css/blog_index.css' %}">
 
+    <link rel="stylesheet" href="{% static 'blog/css/blog_index.css' %}">
 
-<div class="col-md-12" style="padding-top: 50px;">
-
-    {% for post in post_list %}
-        <div class="container">
-          <div class="align-center text-center">
-            {% if post.cover %}
-              <a href="{% url 'post_detail' post.pk%}">
-                <img class="card-img-top " src="{{ post.cover.url}}" alt="photo" style="width: 50%">
-              </a>
-            {% endif %}
-            <div>
-                <small>
-                  {{ post.created_on.date }}, {{ post.created_on.time }} |&nbsp;
-                  <a href="{% url 'post_author' post.author%}">{{ post.author }} </a> |&nbsp;
-                  Categories:
-                  {% for category in post.categories.all %}
-                  <a href="{% url 'post_category' category.name %}">
-                    {{ category.name }}
-                  </a>&nbsp;
-                  {% endfor %}
-                </small>
+    <div class="row blogRow">
+        {% for post in post_list %}
+            <div class="col-md-4 blogCol">
+                <div class="blogPost">
+                    {% if post.cover %}
+                        <a href="{% url 'post_detail' post.pk %}">
+                            <img class="card-img-top" src="{{ post.cover.url }}" alt="photo">
+                        </a>
+                    {% endif %}
+                    <div>
+                        <small class="info">
+                            <p>Created: {{ post.created_on.date }}, {{ post.created_on.time }}</p>
+                            <p>Last modified: {{ post.last_modified.date }}, {{ post.last_modified.time }}</p>
+                            <p>Created by: <a href="{% url 'post_author' post.author %}">{{ post.author }} </a>|&nbsp;
+                                Categories:
+                                {% for category in post.categories.all %}
+                                    <a href="{% url 'post_category' category.name %}">
+                                        {{ category.name }}
+                                    </a>&nbsp;</p>
+                                {% endfor %}
+                        </small>
+                        <a href="{% url 'post_detail' post.pk %}">
+                            <h4>{{ post.title }}</h4>
+                        </a>
+                        <p class="postBody">{{ post.body | slice:":200" }}...</p>
+                    </div>
+                </div>
             </div>
-            <h2 style="padding-top: 10px"><a href="{% url 'post_detail' post.pk%}">{{ post.title }}</a></h2>
-          </div>
-          <p style="padding-bottom: 30px">{{ post.body | slice:":400" }}...</p>
-        </div>
-    {% endfor %}
-</div>
+        {% endfor %}
+    </div>
+
 {% endblock %}

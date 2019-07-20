@@ -120,7 +120,7 @@ class CheckDeletePermissions(LoginRequiredMixin, UserPassesTestMixin, generic.De
 
 class UpdatePostView(CheckUpdatePermissions):
     model = Post
-    fields = '__all__'
+    form_class = PostForm
 
 
 class DeletePostView(CheckDeletePermissions):

@@ -18,121 +18,148 @@
 
 {% block page_content %}
 
-<div class="col-md-12" style="padding-top: 50px">
-     <div>
-       {% if post.cover %}
-          <img src="{{ post.cover.url}}" alt="{{ post.title }}" style="width: 30%">
-       {% endif %}
-     </div>
-     <div>
-       <small>
-         Categories:&nbsp;
-           {% for category in post.categories.all %}
-             <a href="{% url 'post_category' category.name %}">
-               {{ category.name }}
-             </a>&nbsp;
-           {% endfor %}
-       </small>
-     </div>
-     <p>{{ post.body }}</p>
+    <link rel="stylesheet" href="{% static 'blog/css/post_detail.css' %}">
 
-     {% if user.is_authenticated and post.author == user %}
-       <a href="{% url 'update_post' post.pk%}">
-         <button type="submit" class="btn btn-dark" >Update</button>
-       </a>
-       <!-- Button to Open the Modal -->
-       <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#myModal">
-         Delete
-       </button>
-     {% endif %}
-  <!-- The Modal -->
-  <div class="modal fade" id="myModal">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Delete Post </h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-
-        <!-- Modal body -->
-        <div class="modal-body">
-          <p>Are you sure you want to delete the post: {{ post.title }}?</p>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <form action="{% url 'delete_post' post.pk%}?next={{request.path}}" method="POST">
-          {% csrf_token %}
-            <input type="submit" class="btn btn-danger" value="Yes, delete.">
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    <h3>Leave a comment:</h3>
-      {% if user.is_authenticated %}
-        <form action="/blog/{{ post.pk }}/" method="post" style="width: 50%; ">
-            {% csrf_token %}
-            <div class="form-group">
-                {{ form.author }}
+    <div class="postDetail">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h6>Last modified:{{ post.last_modified.date }}, {{ post.last_modified.time }}</h6>
+                <hr>
+                {% if post.cover %}
+                    <a href="{{ post.cover.url }}" class="lightview">
+                        <img class="mainImg float-right" src="{{ post.cover.url }}" alt="photo">
+                    </a>
+                {% endif %}
+                <p>{{ post.body|safe }}</p>
             </div>
-            <div class="form-group">
-                {{ form.body }}
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row" id="buttons">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                {% if user.is_authenticated and post.author == user %}
+                    <a href="{% url 'update_post' post.pk %}">
+                        <button type="submit" class="btn btn-dark">Update</button>
+                    </a>
+                    <!-- Button to Open the Modal -->
+                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#myModal">
+                        Delete
+                    </button>
+                {% endif %}
             </div>
-            <button type="submit" class="btn btn-dark" >Submit</button>
-        </form>
-      {% else %}
-          <p> You must be
-              <a href="{% url 'account_login' %}?next={{request.path}}"> logged in </a>
-              to post comments here
-          </p>
-      {% endif %}
-    <h3>Comments:</h3>
-    {% for comment in post.comments.all %}
-      <p>
-        On {{comment.last_modified.date }}&nbsp;{{comment.last_modified.time }}
-        <b>{{ comment.author }}</b> wrote:
-      </p>
-      <p>{{ comment.body }}</p>
-      {% if user.is_authenticated and comment.author == user %}
-        <a href="{% url 'update_comment' comment.pk %}?next={{request.path}}">
-         <button type="submit" class="btn btn-dark" >Update</button>
-        </a>
-        <!-- Button to Open the Modal -->
-        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#myModa2{{ comment.pk }}">
-          Delete
-        </button>
-           <!-- The Modal -->
-  <div class="modal fade" id="myModa2{{ comment.pk }}">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Delete Comment </h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="col-md-2"></div>
         </div>
 
-        <!-- Modal body -->
-        <div class="modal-body">
-          <p>Are you sure you want to delete this comment?</p>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Delete Post </h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete the post: {{ post.title }}?</p>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <form action="{% url 'delete_post' post.pk %}?next={{ request.path }}" method="POST">
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-danger" value="Yes, delete.">
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <form action="{% url 'delete_comment' comment.pk%}?next=/blog/{{ post.id }}/" method="POST">
-          {% csrf_token %}
-            <input type="submit" class="btn btn-danger" value="Yes, delete.">
-          </form>
+
+        <div class="row commentForm">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h3>Leave a comment:</h3>
+                {% if user.is_authenticated %}
+                    <form action="/blog/{{ post.pk }}/" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ form.body }}
+                        </div>
+                        <button type="submit" class="btn btn-dark">Submit</button>
+                    </form>
+                {% else %}
+                    <p> You must be
+                        <a href="{% url 'account_login' %}?next={{ request.path }}"> logged in </a>
+                        to post comments here
+                    </p>
+                {% endif %}
+            </div>
         </div>
-      </div>
+
+        <div class="row comments">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h3>Comments:</h3>
+                <hr>
+                {% for comment in post.comments.all %}
+                    <p>
+                        On {{ comment.last_modified.date }}&nbsp;{{ comment.last_modified.time }}
+                        <b>{{ comment.author }}</b> wrote:
+                    </p>
+                    <p>{{ comment.body }}</p>
+                    {% if user.is_authenticated and comment.author == user %}
+                        <a href="{% url 'update_comment' comment.pk %}?next={{ request.path }}">
+                            <button type="submit" class="btn btn-dark">Update</button>
+                        </a>
+
+                        <!-- Button to Open the Modal -->
+
+                        <button type="button" class="btn btn-dark" data-toggle="modal"
+                                data-target="#myModa2{{ comment.pk }}">
+                            Delete
+                        </button>
+                    {% endif %}
+
+                    <!-- The Modal -->
+
+                    <div class="modal fade" id="myModa2{{ comment.pk }}">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Delete Comment </h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Modal body -->
+
+                                <div class="modal-body">
+                                    <p>Are you sure you want to delete this comment?</p>
+                                </div>
+
+                                <!-- Modal footer -->
+
+                                <div class="modal-footer">
+                                    <form action="{% url 'delete_comment' comment.pk %}?next={{ request.path }}"
+                                          method="POST">
+                                        {% csrf_token %}
+                                        <input type="submit" class="btn btn-danger" value="Yes, delete.">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+        </div>
     </div>
-  </div>
-      {% endif %}
-      <hr>
-    {% endfor %}
-</div>
+
 {% endblock %}
