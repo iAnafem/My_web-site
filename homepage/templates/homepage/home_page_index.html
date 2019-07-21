@@ -10,6 +10,9 @@
 
 {% block secondary_header %} Probably, I'll be able to impress you {% endblock %}
 
+{% block button-href %} /infopages/contact/ {% endblock %}
+
+{% block button %} Contact me today! {% endblock %}
 
 
 {% block page_content %}
@@ -129,7 +132,7 @@
                                     {% endfor %}
                                 </p>
                                 <p class="card-text">
-                                    {{ post.body }}
+                                    {{ post.body | slice:"200"|safe }}...
                                 </p>
                             </div>
                             <div class="card-footer">

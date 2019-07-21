@@ -40,9 +40,9 @@
                             {% endfor %}
                         </small>
                         <a href="{% url 'post_detail' post.pk %}">
-                            <h4>{{ post.title }}</h4>
+                            <h4>{{ post.title|safe }}</h4>
                         </a>
-                        <p class="postBody">{{ post.body | slice:":200" }}...</p>
+                        <p class="postBody">{{ post.body | slice:":200"|safe }}...</p>
                     </div>
                 </div>
             </div>
