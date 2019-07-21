@@ -6,6 +6,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import FormMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from accounts.models import CustomUser
+from ratelimit.decorators import ratelimit
 
 
 class BlogIndex(generic.ListView):
@@ -66,6 +67,8 @@ class PostDetail(FormMixin, generic.DetailView):
         context['form'] = self.get_form()
         return context
 
+    @ratelimit(key='ip', rate='2/m', method='POST')
+    @ratelimit(key='CustomUser', rate='2/m', method='POST')
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         form = self.get_form()
@@ -91,6 +94,8 @@ class CreatePostView(LoginRequiredMixin, generic.CreateView):
     template_name = 'blog/create_post.html'
     success_url = reverse_lazy('blog_index')
 
+    @ratelimit(key='ip', rate='2/m', method=['GET', 'POST'])
+    @ratelimit(key='CustomUser', rate='2/m', method='POST')
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         if form.is_valid():
