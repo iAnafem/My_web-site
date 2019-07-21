@@ -67,8 +67,8 @@ class PostDetail(FormMixin, generic.DetailView):
         context['form'] = self.get_form()
         return context
 
-    @ratelimit(key='ip', rate='2/m', method='POST')
-    @ratelimit(key='CustomUser', rate='2/m', method='POST')
+    @ratelimit(key='user', rate='2/m', method='POST', block=True)
+    @ratelimit(key='user', rate='20/h', method='POST', block=True)
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         form = self.get_form()
@@ -94,8 +94,8 @@ class CreatePostView(LoginRequiredMixin, generic.CreateView):
     template_name = 'blog/create_post.html'
     success_url = reverse_lazy('blog_index')
 
-    @ratelimit(key='ip', rate='2/m', method=['GET', 'POST'])
-    @ratelimit(key='CustomUser', rate='2/m', method='POST')
+    @ratelimit(key='user', rate='2/m', method='POST', block=True)
+    @ratelimit(key='user', rate='5/h', method='POST', block=True)
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         if form.is_valid():

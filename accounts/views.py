@@ -1,5 +1,4 @@
 from django.urls import reverse_lazy, reverse
-# from .forms import SignUpForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.views import generic

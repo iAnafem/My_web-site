@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic.edit import FormMixin
 from django.urls import reverse
 from blog.views import CheckDeletePermissions, CheckUpdatePermissions
+from ratelimit.decorators import ratelimit
 
 
 class ProjectDetail(FormMixin, generic.DetailView):
@@ -24,6 +25,8 @@ class ProjectDetail(FormMixin, generic.DetailView):
             context['count'] += str(i)
         return context
 
+    @ratelimit(key='user', rate='2/m', method='POST', block=True)
+    @ratelimit(key='user', rate='20/h', method='POST', block=True)
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         form = self.get_form()
