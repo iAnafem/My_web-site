@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '60$6uug*$%df7)p+2i8g+ll+ar50)(
 # DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['enigmatic-brushlands-44443.herokuapp.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['anafem.herokuapp.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
